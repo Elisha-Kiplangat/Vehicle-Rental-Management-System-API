@@ -189,3 +189,32 @@ export const locationsTableRelation = relations(locationsTable, ({ many }) => ({
     branches: many(branchesTable)
 }));
 
+export type userInsert = typeof usersTable.$inferInsert;
+export type userSelect = typeof usersTable.$inferSelect;
+
+export type authInsert = typeof authenticationTable.$inferInsert;
+export type authSelect = typeof authenticationTable.$inferSelect;
+
+export type vehicleInsert = typeof vehiclesTable.$inferInsert;
+export type vehicleSelect = typeof vehiclesTable.$inferSelect;
+
+export type vehicleSpecInsert = typeof vehicleSpecsTable.$inferInsert;
+export type vehicleSpecSelect = typeof vehicleSpecsTable.$inferSelect;
+
+export type bookingsInsert = typeof bookingsTable.$inferInsert;
+export type bookingsSelect = typeof bookingsTable.$inferSelect;
+
+export type paymentInsert = typeof paymentsTable.$inferInsert;
+export type paymentSelect = typeof paymentsTable.$inferSelect;
+
+export type costomerSupportInsert = typeof customerSupportTicketsTable.$inferInsert;
+export type custommerSupportSelect = typeof customerSupportTicketsTable.$inferSelect;
+
+export type locationInsert = typeof locationsTable.$inferInsert;
+export type locationSelect = typeof locationsTable.$inferSelect;
+
+export type branchesInsert = typeof branchesTable.$inferInsert;
+export type branchesSelect = typeof branchesTable.$inferSelect;
+
+export type fleetInsert = typeof fleetManagementTable.$inferInsert;
+export type fleetSelect = typeof fleetManagementTable.$inferSelect;
