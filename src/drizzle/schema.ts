@@ -218,3 +218,10 @@ export type branchesSelect = typeof branchesTable.$inferSelect;
 
 export type fleetInsert = typeof fleetManagementTable.$inferInsert;
 export type fleetSelect = typeof fleetManagementTable.$inferSelect;
+
+
+
+
+
+
+
