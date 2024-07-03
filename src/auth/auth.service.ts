@@ -1,7 +1,8 @@
 import db from '../drizzle/db';
 import { usersTable, authenticationTable } from '../drizzle/schema';
-import { userInsert, authInsert } from '../drizzle/schema';
+import { userInsert, authInsert, authSelect } from '../drizzle/schema';
 import bcrypt from 'bcrypt'
+import { sql } from 'drizzle-orm'
 
 export const addUserService = async (user: userInsert, password: string) => {
     try {
@@ -37,4 +38,25 @@ export const addUserService = async (user: userInsert, password: string) => {
     } catch (error: any) {
         throw new Error(`Error adding user: ${error.message}`);
     }
+};
+
+
+export const loginService = async (email: string) => {
+    return await db.query.usersTable.findFirst({
+        columns: {
+            user_id: true,
+            email: true,
+            role: true
+        },
+        where: sql`${usersTable.email} = ${email}`
+    });
+};
+
+export const getAuthDetails = async (user_id: number) => {
+    return await db.query.authenticationTable.findFirst({
+        columns: {
+            password: true
+        },
+        where: sql`${authenticationTable.user_id} = ${user_id}`
+    });
 };

@@ -48,3 +48,13 @@ Content-Type: application/json
     "updated_at": "2024-07-02",
     "password": "password"
 }
+
+###---------------------------------------Login (user, auth tables)--
+POST http://localhost:8000/login
+Content-Type: application/json
+
+{
+    "email": "johndoe1@example.com",
+    "password": "password"
+
+}

@@ -30,3 +30,8 @@ export const registerSchema = z.object({
     }).transform((val) => new Date(val)),
     password: z.string()
 });
+
+export const loginSchema = z.object({
+    email: z.string().email(),
+    password: z.string()
+})
