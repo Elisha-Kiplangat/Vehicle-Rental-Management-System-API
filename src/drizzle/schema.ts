@@ -198,8 +198,8 @@ export type authSelect = typeof authenticationTable.$inferSelect;
 export type vehicleInsert = typeof vehiclesTable.$inferInsert;
 export type vehicleSelect = typeof vehiclesTable.$inferSelect;
 
-export type vehicleSpecInsert = typeof vehicleSpecsTable.$inferInsert;
-export type vehicleSpecSelect = typeof vehicleSpecsTable.$inferSelect;
+export type vehicleSpecsInsert = typeof vehicleSpecsTable.$inferInsert;
+export type vehicleSpecsSelect = typeof vehicleSpecsTable.$inferSelect;
 
 export type bookingsInsert = typeof bookingsTable.$inferInsert;
 export type bookingsSelect = typeof bookingsTable.$inferSelect;

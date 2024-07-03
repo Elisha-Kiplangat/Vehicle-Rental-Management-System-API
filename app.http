@@ -58,3 +58,77 @@ Content-Type: application/json
     "password": "password"
 
 }
+
+###     ---------------------------------
+
+###
+GET http://localhost:8000/vehicles
+
+###
+GET http://localhost:8000/vehicles?limit=1
+
+###
+GET http://localhost:8000/vehicles/1
+
+###
+POST http://localhost:8000/vehicles
+Content-Type: application/json
+
+{
+    "vehicle_specs_id": 1,
+    "rental_rate": 2,
+    "availability": true,
+    "created_at": "2024-07-02",
+    "updated_at": "2024-07-02"
+}
+
+###
+PUT http://localhost:8000/vehicles/3
+Content-Type: application/json
+
+{
+    "availability": false
+}
+
+###
+DELETE http://localhost:8000/vehicles/delete/4
+
+
+###     ---------------------------------
+
+###
+GET http://localhost:8000/vehicleSpecifications
+
+###
+GET http://localhost:8000/vehicleSpecifications?limit=1
+
+###
+GET http://localhost:8000/vehicleSpecifications/1
+
+###
+POST http://localhost:8000/vehicleSpecifications
+Content-Type: application/json
+
+{
+    "manufacturer": "Tesla",
+    "model": "Cybertruck",
+    "year": 2023,
+    "fuel_type": "null",
+    "engine_capacity": "1000cc",
+    "transmission": "1000hp",
+    "seating_capacity": 4,
+    "color": "black",
+    "features": "beast"
+}
+
+###
+PUT http://localhost:8000/vehicleSpecifications/1
+Content-Type: application/json
+
+{
+   "features": "normal"
+}
+
+###
+DELETE http://localhost:8000/vehicleSpecifications/delete/1
+

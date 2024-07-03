@@ -3,6 +3,8 @@ import { Hono } from 'hono'
 import 'dotenv/config'
 import { usersRouter } from './users/users.router'
 import { authRouter } from './auth/auth.router'
+import { vehiclesRouter } from './vehicle/vehicle.router'
+import { vehicleSpecsRouter } from './vehicleSpecification/vehicleSpecification.router'
 
 const app = new Hono()
 
@@ -13,6 +15,10 @@ app.get('/', (c) => {
 app.route('/', usersRouter)
 
 app.route('/', authRouter)
+
+app.route('/', vehiclesRouter)
+
+app.route('/', vehicleSpecsRouter)
 
 serve({
   fetch: app.fetch,
