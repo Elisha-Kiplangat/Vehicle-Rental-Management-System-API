@@ -34,3 +34,17 @@ Content-Type: application/json
 ###
 DELETE http://localhost:8000/delete/4
 
+###---------------------------------------Register (user, auth tables)--
+POST http://localhost:8000/register
+Content-Type: application/json
+
+{
+    "full_name": "John Doe",
+    "email": "johndoe@example.com",
+    "contact_phone": "1234567890",
+    "address": "123 Main St",
+    "role": "user",
+    "created_at": "2024-07-02",
+    "updated_at": "2024-07-02",
+    "password": "password"
+}

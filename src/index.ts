@@ -2,6 +2,7 @@ import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
 import 'dotenv/config'
 import { usersRouter } from './users/users.router'
+import { authRouter } from './auth/auth.router'
 
 const app = new Hono()
 
@@ -10,6 +11,8 @@ app.get('/', (c) => {
 })
 
 app.route('/', usersRouter)
+
+app.route('/', authRouter)
 
 serve({
   fetch: app.fetch,
