@@ -10,6 +10,7 @@ import { paymentsRouter } from './payments/payments.router'
 import { supportTicketsRouter } from './customerSupportTicket/customerSupportTicket.router'
 import { locationsRouter } from './location/location.router'
 import { branchesRouter } from './branches/branches.router'
+import { fleetRouter } from './fleetManagement/fleetManagement.router'
 
 
 const app = new Hono()
@@ -35,6 +36,8 @@ app.route('/', supportTicketsRouter)
 app.route('/', locationsRouter)
 
 app.route('/', branchesRouter)
+
+app.route('/', fleetRouter)
 
 serve({
   fetch: app.fetch,

@@ -133,3 +133,20 @@ export const branchSchema = z.object({
         message: 'Invalid date format for updated_at',
     }).transform((val) => new Date(val))
 })
+
+export const fleetSchema = z.object({
+    vehicle_id: z.number(),
+    acquisition_date: z.string().refine((val) => !isNaN(Date.parse(val)), {
+        message: 'Invalid date format for created_at',
+    }).transform((val) => new Date(val)),
+    depreciation_rate: z.number(),
+    current_value: z.number(),
+    maintenance_cost: z.number(),
+    status: z.string(),
+    created_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
+        message: 'Invalid date format for created_at',
+    }).transform((val) => new Date(val)),
+    updated_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
+        message: 'Invalid date format for updated_at',
+    }).transform((val) => new Date(val))
+})

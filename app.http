@@ -310,3 +310,40 @@ Content-Type: application/json
 ###
 DELETE http://localhost:8000/branches/delete/1
 
+###     ---------------------------------
+
+###
+GET http://localhost:8000/fleets
+
+###
+GET http://localhost:8000/fleets?limit=1
+
+###
+GET http://localhost:8000/fleets/1
+
+###
+POST http://localhost:8000/fleets
+Content-Type: application/json
+
+{
+    "vehicle_id": 1,
+    "acquisition_date": "2024-07-04",
+    "depreciation_rate": 2.3,
+    "current_value": 2499999,
+    "maintenance_cost": 11299,
+    "status": "done",
+    "created_at": "2024-07-04",
+    "updated_at": "2024-07-04"
+}
+
+###
+PUT http://localhost:8000/fleets/1
+Content-Type: application/json
+
+{
+   "maintenance_cost": 20000
+}
+
+###
+DELETE http://localhost:8000/fleets/delete/1
+
