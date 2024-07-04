@@ -59,3 +59,41 @@ export const vehicleSpecsSchema = z.object({
     color: z.string(),
     features: z.string()
 })
+
+export const bookingSchema = z.object({
+    user_id: z.number(),
+    vehicle_id: z.number(),
+    location_id: z.number(),
+    booking_date: z.string().refine((val) => !isNaN(Date.parse(val)), {
+        message: 'Invalid date format for booking date',
+    }).transform((val) => new Date(val)),
+    return_date: z.string().refine((val) => !isNaN(Date.parse(val)), {
+        message: 'Invalid date format for booking date',
+    }).transform((val) => new Date(val)),
+    total_amount: z.number(),
+    booking_status: z.string(),
+    created_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
+        message: 'Invalid date format for created_at',
+    }).transform((val) => new Date(val)),
+    updated_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
+        message: 'Invalid date format for updated_at',
+    }).transform((val) => new Date(val))
+})
+
+export const paymentSchema = z.object({
+    payment_id: z.number(),
+    booking_id: z.number(),
+    amount: z.number(),
+    payment_status: z.string(),
+    payment_date: z.string().refine((val) => !isNaN(Date.parse(val)), {
+        message: 'Invalid date format for payment date',
+    }).transform((val) => new Date(val)),
+    payment_method: z.string(),
+    transaction_id: z.string(),
+    created_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
+        message: 'Invalid date format for created_at',
+    }).transform((val) => new Date(val)),
+    updated_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
+        message: 'Invalid date format for updated_at',
+    }).transform((val) => new Date(val))
+})

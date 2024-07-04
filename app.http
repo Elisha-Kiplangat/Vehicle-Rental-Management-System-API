@@ -132,3 +132,79 @@ Content-Type: application/json
 ###
 DELETE http://localhost:8000/vehicleSpecifications/delete/1
 
+
+###     ---------------------------------
+
+###
+GET http://localhost:8000/bookings
+
+###
+GET http://localhost:8000/bookings?limit=1
+
+###
+GET http://localhost:8000/bookings/1
+
+###
+POST http://localhost:8000/bookings
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "vehicle_id": 2,
+    "location_id": 2,
+    "booking_date": "2024-07-04",
+    "return_date": "2024-07-04",
+    "total_amount": 12000,
+    "booking_status": "pending",
+    "created_at": "2024-07-04",
+    "updated_at": "2024-07-04"
+}
+
+###
+PUT http://localhost:8000/bookings/1
+Content-Type: application/json
+
+{
+   "booking_status": "complete"
+}
+
+###
+DELETE http://localhost:8000/bookings/delete/1
+
+###     ---------------------------------
+
+###
+GET http://localhost:8000/payments
+
+###
+GET http://localhost:8000/payments?limit=1
+
+###
+GET http://localhost:8000/payments/1
+
+###
+POST http://localhost:8000/payments
+Content-Type: application/json
+
+{
+    "payment_id": 1,
+    "booking_id": 2,
+    "amount": 2,
+    "payment_status": "pending",
+    "payment_date": "2024-07-04",
+    "transaction_id": "SJKHJ4HS44",
+    "created_at": "2024-07-04",
+    "updated_at": "2024-07-04"
+}
+
+###
+PUT http://localhost:8000/payments/1
+Content-Type: application/json
+
+{
+   "payment_status": "complete"
+}
+
+###
+DELETE http://localhost:8000/payments/delete/1
+

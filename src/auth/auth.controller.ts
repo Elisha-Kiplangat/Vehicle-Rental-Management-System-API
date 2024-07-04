@@ -52,13 +52,13 @@ export const loginController = async (c: Context): Promise<Response> => {
             role: userExist.role,
             exp: Math.floor(Date.now() / 1000) + 60 * 180 // 3 hours => SESSION EXPIRATION
         };
-        const secret = process.env.JWT_SECRET as string; // Secret key
+        const secret = process.env.JWT_SECRET as string; 
         const token = await sign(payload, secret); // Create a JWT token
 
         let user = userExist?.email;
         let role = userExist?.role;
         return c.json({ token, user: { role, user } }, 200); 
-        // return c.json({ token, user: { role: userExist.role, email: userExist.email } }, 200); // Return token and user details
+        
     } catch (error: any) {
         return c.json({ error: error?.message }, 400);
     }
