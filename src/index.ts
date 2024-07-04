@@ -7,6 +7,9 @@ import { vehiclesRouter } from './vehicle/vehicle.router'
 import { vehicleSpecsRouter } from './vehicleSpecification/vehicleSpecification.router'
 import { bookingsRouter } from './booking/booking.router'
 import { paymentsRouter } from './payments/payments.router'
+import { supportTicketsRouter } from './customerSupportTicket/customerSupportTicket.router'
+import { locationsRouter } from './location/location.router'
+
 
 const app = new Hono()
 
@@ -25,6 +28,10 @@ app.route('/', vehicleSpecsRouter)
 app.route('/', bookingsRouter)
 
 app.route('/', paymentsRouter)
+
+app.route('/', supportTicketsRouter)
+
+app.route('/', locationsRouter)
 
 serve({
   fetch: app.fetch,

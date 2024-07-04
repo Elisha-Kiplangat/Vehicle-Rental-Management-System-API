@@ -208,3 +208,71 @@ Content-Type: application/json
 ###
 DELETE http://localhost:8000/payments/delete/1
 
+###     ---------------------------------
+
+###
+GET http://localhost:8000/supportTickets
+
+###
+GET http://localhost:8000/supportTickets?limit=1
+
+###
+GET http://localhost:8000/supportTickets/1
+
+###
+POST http://localhost:8000/supportTickets
+Content-Type: application/json
+
+{
+    "user_id": 1,
+    "subject": "login problem",
+    "description": "login problem",
+    "status": "pending",
+    "created_at": "2024-07-04",
+    "updated_at": "2024-07-04"
+}
+
+###
+PUT http://localhost:8000/supportTickets/1
+Content-Type: application/json
+
+{
+   "status": "complete"
+}
+
+###
+DELETE http://localhost:8000/supportTickets/delete/1
+
+###     ---------------------------------
+
+###
+GET http://localhost:8000/locations
+
+###
+GET http://localhost:8000/locations?limit=1
+
+###
+GET http://localhost:8000/locations/1
+
+###
+POST http://localhost:8000/locations
+Content-Type: application/json
+
+{
+    "name": "London",
+    "address": "123 Manchester",
+    "created_at": "2024-07-04",
+    "updated_at": "2024-07-04"
+}
+
+###
+PUT http://localhost:8000/locations/1
+Content-Type: application/json
+
+{
+   "address": "123 north London"
+}
+
+###
+DELETE http://localhost:8000/locations/delete/1
+

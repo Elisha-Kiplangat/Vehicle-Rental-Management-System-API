@@ -97,3 +97,27 @@ export const paymentSchema = z.object({
         message: 'Invalid date format for updated_at',
     }).transform((val) => new Date(val))
 })
+
+export const supportTicketSchema = z.object({
+    user_id: z.number(),
+    subject: z.string(),
+    description: z.string(),
+    status: z.string(),
+    created_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
+        message: 'Invalid date format for created_at',
+    }).transform((val) => new Date(val)),
+    updated_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
+        message: 'Invalid date format for updated_at',
+    }).transform((val) => new Date(val))
+})
+
+export const locationSchema = z.object({
+    name: z.string(),
+    address: z.string(),
+    created_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
+        message: 'Invalid date format for created_at',
+    }).transform((val) => new Date(val)),
+    updated_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
+        message: 'Invalid date format for updated_at',
+    }).transform((val) => new Date(val))
+})
