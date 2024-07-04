@@ -276,3 +276,37 @@ Content-Type: application/json
 ###
 DELETE http://localhost:8000/locations/delete/1
 
+###     ---------------------------------
+
+###
+GET http://localhost:8000/branches
+
+###
+GET http://localhost:8000/branches?limit=1
+
+###
+GET http://localhost:8000/branches/1
+
+###
+POST http://localhost:8000/branches
+Content-Type: application/json
+
+{
+    "name": "Street 24",
+    "location_id": 1,
+    "contact_phone": "+1231231232",
+    "created_at": "2024-07-04",
+    "updated_at": "2024-07-04"
+}
+
+###
+PUT http://localhost:8000/branches/1
+Content-Type: application/json
+
+{
+   "contact_phone": "+1231231231"
+}
+
+###
+DELETE http://localhost:8000/branches/delete/1
+

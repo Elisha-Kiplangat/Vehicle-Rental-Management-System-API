@@ -121,3 +121,15 @@ export const locationSchema = z.object({
         message: 'Invalid date format for updated_at',
     }).transform((val) => new Date(val))
 })
+
+export const branchSchema = z.object({
+    name: z.string(),
+    location_id: z.number(),
+    contact_phone: z.string(),
+    created_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
+        message: 'Invalid date format for created_at',
+    }).transform((val) => new Date(val)),
+    updated_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
+        message: 'Invalid date format for updated_at',
+    }).transform((val) => new Date(val))
+})
