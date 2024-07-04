@@ -2,19 +2,20 @@ import { Hono } from "hono";
 import { getAllVehiclesController, oneVehicleController, addVehicleController, updateVehicleController, deleteVehicleController } from "./vehicle.controller";
 import { zValidator } from "@hono/zod-validator";
 import { vehicleSchema } from "../validators";
+import { adminRoleAuth, allRoleAuth } from "../middleware/bearAuth";
 
 export const vehiclesRouter = new Hono();
 
-vehiclesRouter.get("/vehicles", getAllVehiclesController);
+vehiclesRouter.get("/vehicles", allRoleAuth, getAllVehiclesController);
 
-vehiclesRouter.get("/vehicles/:id", oneVehicleController)
+vehiclesRouter.get("/vehicles/:id", allRoleAuth, oneVehicleController)
 
-vehiclesRouter.post("/vehicles", zValidator('json', vehicleSchema, (result, c) => {
+vehiclesRouter.post("/vehicles", adminRoleAuth, zValidator('json', vehicleSchema, (result, c) => {
     if (!result.success) {
         return c.json(result.error, 400)
     }
 }), addVehicleController)
 
-vehiclesRouter.put("/vehicles/:id", updateVehicleController)
+vehiclesRouter.put("/vehicles/:id", adminRoleAuth, updateVehicleController)
 
-vehiclesRouter.delete("/vehicles/delete/:id", deleteVehicleController)
+vehiclesRouter.delete("/vehicles/delete/:id", adminRoleAuth, deleteVehicleController)
