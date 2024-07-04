@@ -48,3 +48,19 @@ export const deleteVehicleService = async (id: number) => {
     await db.delete(vehiclesTable).where(eq(vehiclesTable.vehicle_id, id));
     return "vehicle deleted successfully"
 }
+
+
+export const vehicleDetailsService = async (id: number) => {
+    return await db.query.vehiclesTable.findMany({
+        with: {
+            vehicle_spec: {
+                columns: {
+                    model: true,
+                    fuel_type: true,
+                    seating_capacity: true
+                }
+            }
+        },
+        where: eq(vehiclesTable.vehicle_id, id)
+    })
+}

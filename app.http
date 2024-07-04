@@ -69,7 +69,12 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8000/vehicles
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDEwODA5Nn0.mzOzk9DnbKDTX_dPf0ljgoJVwmnwBCPD4jEzr37wgus
+
+
+###--- vehicle details
+GET http://localhost:8000/vehicleDetails/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDEwODA5Nn0.mzOzk9DnbKDTX_dPf0ljgoJVwmnwBCPD4jEzr37wgus
 
 ###
 GET http://localhost:8000/vehicles?limit=1
@@ -155,7 +160,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxl
 
 ###
 GET http://localhost:8000/bookings
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDEwODYzOH0.WD7SDzaQ8FNACyfNP9HsXJOspCiquhEDzEJi8O4hVng
 
 ###
 GET http://localhost:8000/bookings?limit=1
@@ -167,15 +172,15 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxl
 
 ###
 POST http://localhost:8000/bookings
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDEwODYzOH0.WD7SDzaQ8FNACyfNP9HsXJOspCiquhEDzEJi8O4hVng
 Content-Type: application/json
 
 {
     "user_id": 1,
-    "vehicle_id": 2,
-    "location_id": 2,
+    "vehicle_id": 1,
+    "location_id": 1,
     "booking_date": "2024-07-04",
-    "return_date": "2024-07-04",
+    "return_date": "2024-07-07",
     "total_amount": 12000,
     "booking_status": "pending",
     "created_at": "2024-07-04",

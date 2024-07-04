@@ -10,7 +10,7 @@ bookingsRouter.get("/bookings", adminRoleAuth, getAllBookingsController);
 
 bookingsRouter.get("/bookings/:id", allRoleAuth, oneBookingController)
 
-bookingsRouter.post("/bookings", userRoleAuth, zValidator('json', bookingSchema, (result, c) => {
+bookingsRouter.post("/bookings", allRoleAuth, zValidator('json', bookingSchema, (result, c) => {
     if (!result.success) {
         return c.json(result.error, 400)
     }

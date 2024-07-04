@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import { getAllVehicleService, oneVehicleService, addVehicleService, updateVehicleService, deleteVehicleService } from "./vehicle.service";
+import { getAllVehicleService, oneVehicleService, addVehicleService, updateVehicleService, deleteVehicleService, vehicleDetailsService } from "./vehicle.service";
 
 export const getAllVehiclesController = async (c: Context) => {
     try {
@@ -78,3 +78,19 @@ export const deleteVehicleController = async (c: Context) => {
         return c.json({ error: error?.message }, 400)
     }
 }
+
+export const vehicleDetailsController = async (c: Context) => {
+    const id = parseInt(c.req.param("id"));
+    if (isNaN(id)) return c.text("Invalid ID", 400);
+
+    try {
+        const vehicleDetails = await vehicleDetailsService(id);
+        if (!vehicleDetails || vehicleDetails.length === 0) {
+            return c.text("Vehicle not found", 404);
+        }
+        return c.json(vehicleDetails, 200);
+    } catch (error) {
+        console.error(error);
+        return c.text("Internal Server Error", 500);
+    }
+};
