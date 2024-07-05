@@ -46,7 +46,7 @@ Content-Type: application/json
 
 {
     "full_name": "John Doe",
-    "email": "admin@example.com",
+    "email": "ezra4998@gmail.com",
     "contact_phone": "1234567890",
     "address": "123 Main St",
     "role": "admin",

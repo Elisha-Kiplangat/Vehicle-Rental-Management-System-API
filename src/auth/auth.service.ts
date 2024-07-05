@@ -3,6 +3,7 @@ import { usersTable, authenticationTable } from '../drizzle/schema';
 import { userInsert, authInsert, authSelect } from '../drizzle/schema';
 import bcrypt from 'bcrypt'
 import { sql } from 'drizzle-orm'
+import mailFunction from '../mail/register'
 
 export const addUserService = async (user: userInsert, password: string) => {
     try {
@@ -33,7 +34,7 @@ export const addUserService = async (user: userInsert, password: string) => {
         } 
 
         await db.insert(authenticationTable).values(authData);
-
+        await mailFunction(user.email, 'Registration Successful', user)
         return 'User added successfully';
     } catch (error: any) {
         throw new Error(`Error adding user: ${error.message}`);
