@@ -1,4 +1,4 @@
-import { pgTable, text, varchar, serial, boolean, real, date, primaryKey, integer, pgEnum } from 'drizzle-orm/pg-core';
+import { pgTable, text, varchar, serial, boolean, real, date, timestamp, primaryKey, integer, pgEnum } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 
 export const roleEnum = pgEnum ('role', ["admin", "user"]);
@@ -10,16 +10,16 @@ export const usersTable = pgTable("users", {
     contact_phone: varchar("contact_phone", { length: 20 }).notNull(),
     address: text("address").notNull(),
     role: roleEnum("role").default("user"),
-    created_at: date("created_at").notNull().defaultNow(),
-    updated_at: date("updated_at").notNull()
+    created_at: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
+    updated_at: timestamp("updated_at", { mode: "string" }).notNull().defaultNow()
 });
 
 export const authenticationTable = pgTable("authentication", {
     auth_id: serial("auth_id").primaryKey(),
     user_id: integer("user_id").notNull().references(() => usersTable.user_id),
     password: varchar("password", { length: 255 }).notNull(),
-    created_at: date("created_at").notNull().defaultNow(),
-    updated_at: date("updated_at").notNull()
+    created_at: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
+    updated_at: timestamp("updated_at", { mode: "string" }).notNull().defaultNow()
 });
 
 export const vehiclesTable = pgTable("vehicles", {
@@ -27,8 +27,8 @@ export const vehiclesTable = pgTable("vehicles", {
     vehicle_specs_id: integer("vehicle_id").notNull().references(() => vehicleSpecsTable.vehicle_specs_id),
     rental_rate: real("rental_rate").notNull(),
     availability: boolean("availability").notNull(),
-    created_at: date("created_at").notNull().defaultNow(),
-    updated_at: date("updated_at").notNull()
+    created_at: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
+    updated_at: timestamp("updated_at", { mode: "string" }).notNull().defaultNow()
 });
 
 export const vehicleSpecsTable = pgTable("vehicle_specifications", {
@@ -49,12 +49,12 @@ export const bookingsTable = pgTable("bookings", {
     user_id: integer("user_id").notNull().references(() => usersTable.user_id),
     vehicle_id: integer("vehicle_id").notNull().references(() => vehiclesTable.vehicle_id),
     location_id: integer("location_id").notNull().references(() => locationsTable.location_id),
-    booking_date: date("booking_date").notNull(),
-    return_date: date("return_date").notNull(),
+    booking_date: timestamp("booking_date", { mode: "string" }).notNull().defaultNow(),
+    return_date: timestamp("return_date", { mode: "string" }).notNull().defaultNow(),
     total_amount: real("total_amount").notNull(),
     booking_status: varchar("booking_status", { length: 50 }).default("Pending").notNull(),
-    created_at: date("created_at").notNull().defaultNow(),
-    updated_at: date("updated_at").notNull()
+    created_at: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
+    updated_at: timestamp("updated_at", { mode: "string" }).notNull().defaultNow()
 });
 
 export const paymentsTable = pgTable("payments", {
@@ -62,11 +62,11 @@ export const paymentsTable = pgTable("payments", {
     booking_id: integer("booking_id").notNull().references(() => bookingsTable.booking_id),
     amount: real("amount").notNull(),
     payment_status: varchar("payment_status", { length: 50 }).default("Pending").notNull(),
-    payment_date: date("payment_date").notNull(),
+    payment_date: timestamp("payment_date", { mode: "string" }).notNull().defaultNow(),
     payment_method: varchar("payment_method", { length: 50 }).notNull(),
     transaction_id: varchar("transaction_id", { length: 255 }).notNull(),
-    created_at: date("created_at").notNull().defaultNow(),
-    updated_at: date("updated_at").notNull()
+    created_at: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
+    updated_at: timestamp("updated_at", { mode: "string" }).notNull().defaultNow()
 });
 
 export const customerSupportTicketsTable = pgTable("customer_support_tickets", {
@@ -75,16 +75,16 @@ export const customerSupportTicketsTable = pgTable("customer_support_tickets", {
     subject: varchar("subject", { length: 255 }).notNull(),
     description: text("description").notNull(),
     status: varchar("status", { length: 50 }).notNull(),
-    created_at: date("created_at").notNull().defaultNow(),
-    updated_at: date("updated_at").notNull()
+    created_at: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
+    updated_at: timestamp("updated_at", { mode: "string" }).notNull().defaultNow()
 });
 
 export const locationsTable = pgTable("locations", {
     location_id: serial("location_id").primaryKey(),
     name: varchar("name", { length: 255 }).notNull(),
     address: text("address").notNull(),
-    created_at: date("created_at").notNull().defaultNow(),
-    updated_at: date("updated_at").notNull()
+    created_at: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
+    updated_at: timestamp("updated_at", { mode: "string" }).notNull().defaultNow()
 });
 
 export const branchesTable = pgTable("branches", {
@@ -92,20 +92,20 @@ export const branchesTable = pgTable("branches", {
     name: varchar ("name", { length: 255}).notNull(),
     location_id: integer("location_id").notNull(). references(() => locationsTable.location_id),
     contact_phone: varchar("contact_phone", { length: 20 }).notNull(),
-    created_at: date("created_at").notNull().defaultNow(),
-    updated_at: date("updated_at").notNull()
+    created_at: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
+    updated_at: timestamp("updated_at", { mode: "string" }).notNull().defaultNow()
 })
 
 export const fleetManagementTable = pgTable("fleet_management", {
     fleet_id: serial("fleet_id").primaryKey(),
     vehicle_id: integer("vehicle_id").notNull().references(() => vehiclesTable.vehicle_id),
-    acquisition_date: date("acquisition_date").notNull(),
+    acquisition_date: timestamp("acquisition_date", { mode: "string" }).notNull().defaultNow(),
     depreciation_rate: real("depreciation_rate").notNull(),
     current_value: real("current_value").notNull(),
     maintenance_cost: real("maintenance_cost").notNull(),
     status: varchar("status", { length: 50 }).notNull(),
-    created_at: date("created_at").notNull().defaultNow(),
-    updated_at: date("updated_at").notNull(),
+    created_at: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
+    updated_at: timestamp("updated_at", { mode: "string" }).notNull().defaultNow()
 });
 
 

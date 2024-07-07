@@ -9,10 +9,10 @@ export const userSchema = z.object({
     role: z.string().optional(),
     created_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
         message: 'Invalid date format for created_at',
-    }).transform((val) => new Date(val)),
+    }).transform((val) => new Date(val)).optional(),
     updated_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
         message: 'Invalid date format for updated_at',
-    }).transform((val) => new Date(val))
+    }).transform((val) => new Date(val)).optional()
 })
 
 
@@ -24,10 +24,10 @@ export const registerSchema = z.object({
     role: z.string().optional(),
     created_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
         message: 'Invalid date format for created_at',
-    }).transform((val) => new Date(val)),
+    }).transform((val) => new Date(val)).optional().optional(),
     updated_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
         message: 'Invalid date format for updated_at',
-    }).transform((val) => new Date(val)),
+    }).transform((val) => new Date(val)).optional().optional(),
     password: z.string()
 });
 
@@ -42,10 +42,10 @@ export const vehicleSchema = z.object({
     availability: z.boolean(),
     created_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
         message: 'Invalid date format for created_at',
-    }).transform((val) => new Date(val)),
+    }).transform((val) => new Date(val)).optional(),
     updated_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
         message: 'Invalid date format for updated_at',
-    }).transform((val) => new Date(val))
+    }).transform((val) => new Date(val)).optional()
 })
 
 export const vehicleSpecsSchema = z.object({
@@ -66,18 +66,18 @@ export const bookingSchema = z.object({
     location_id: z.number(),
     booking_date: z.string().refine((val) => !isNaN(Date.parse(val)), {
         message: 'Invalid date format for booking date',
-    }).transform((val) => new Date(val)),
+    }).transform((val) => new Date(val)).optional(),
     return_date: z.string().refine((val) => !isNaN(Date.parse(val)), {
         message: 'Invalid date format for booking date',
-    }).transform((val) => new Date(val)),
+    }).transform((val) => new Date(val)).optional(),
     total_amount: z.number(),
     booking_status: z.string(),
     created_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
         message: 'Invalid date format for created_at',
-    }).transform((val) => new Date(val)),
+    }).transform((val) => new Date(val)).optional(),
     updated_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
         message: 'Invalid date format for updated_at',
-    }).transform((val) => new Date(val))
+    }).transform((val) => new Date(val)).optional()
 })
 
 export const paymentSchema = z.object({
@@ -87,15 +87,15 @@ export const paymentSchema = z.object({
     payment_status: z.string(),
     payment_date: z.string().refine((val) => !isNaN(Date.parse(val)), {
         message: 'Invalid date format for payment date',
-    }).transform((val) => new Date(val)),
+    }).transform((val) => new Date(val)).optional(),
     payment_method: z.string(),
     transaction_id: z.string(),
     created_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
         message: 'Invalid date format for created_at',
-    }).transform((val) => new Date(val)),
+    }).transform((val) => new Date(val)).optional(),
     updated_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
         message: 'Invalid date format for updated_at',
-    }).transform((val) => new Date(val))
+    }).transform((val) => new Date(val)).optional()
 })
 
 export const supportTicketSchema = z.object({
@@ -105,10 +105,10 @@ export const supportTicketSchema = z.object({
     status: z.string(),
     created_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
         message: 'Invalid date format for created_at',
-    }).transform((val) => new Date(val)),
+    }).transform((val) => new Date(val)).optional(),
     updated_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
         message: 'Invalid date format for updated_at',
-    }).transform((val) => new Date(val))
+    }).transform((val) => new Date(val)).optional()
 })
 
 export const locationSchema = z.object({
@@ -116,10 +116,11 @@ export const locationSchema = z.object({
     address: z.string(),
     created_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
         message: 'Invalid date format for created_at',
-    }).transform((val) => new Date(val)),
+    }).transform((val) => new Date(val)).optional().optional(),
     updated_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
         message: 'Invalid date format for updated_at',
-    }).transform((val) => new Date(val))
+    }).transform((val) => new Date(val)).optional().optional()
+    
 })
 
 export const branchSchema = z.object({
@@ -128,25 +129,25 @@ export const branchSchema = z.object({
     contact_phone: z.string(),
     created_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
         message: 'Invalid date format for created_at',
-    }).transform((val) => new Date(val)),
+    }).transform((val) => new Date(val)).optional(),
     updated_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
         message: 'Invalid date format for updated_at',
-    }).transform((val) => new Date(val))
+    }).transform((val) => new Date(val)).optional()
 })
 
 export const fleetSchema = z.object({
     vehicle_id: z.number(),
     acquisition_date: z.string().refine((val) => !isNaN(Date.parse(val)), {
         message: 'Invalid date format for created_at',
-    }).transform((val) => new Date(val)),
+    }).transform((val) => new Date(val)).optional(),
     depreciation_rate: z.number(),
     current_value: z.number(),
     maintenance_cost: z.number(),
     status: z.string(),
     created_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
         message: 'Invalid date format for created_at',
-    }).transform((val) => new Date(val)),
+    }).transform((val) => new Date(val)).optional(),
     updated_at: z.string().refine((val) => !isNaN(Date.parse(val)), {
         message: 'Invalid date format for updated_at',
-    }).transform((val) => new Date(val))
+    }).transform((val) => new Date(val)).optional()
 })

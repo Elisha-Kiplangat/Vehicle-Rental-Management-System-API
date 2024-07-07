@@ -25,8 +25,13 @@ export const oneLocationService = async (id: number): Promise<locationSelect | u
 }
 
 export const addLocationService = async (locations: locationSelect) => {
-    await db.insert(locationsTable).values(locations);
-    return "location added successfully";
+    try {
+        await db.insert(locationsTable).values(locations);
+        return "Location added successfully";
+    } catch (error) {
+        console.error('Error in addLocationService:', error);
+        throw error;
+    }
 }
 
 export const updateLocationService = async (id: number, locations: locationInsert) => {

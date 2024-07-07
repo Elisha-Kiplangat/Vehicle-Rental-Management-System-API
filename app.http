@@ -23,8 +23,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxl
 #     "contact_phone": "+1234567890",
 #     "address": "123 Main St, New York, NY 10001",
 #     "role": "admin",
-#     "created_at": "2024-07-02",
-#     "updated_at": "2024-07-02"
+    # "created_at": "2024-07-07 14:52:20.163",
+    # "updated_at": "2024-07-07 14:52:20.163"
 # }
 
 ###
@@ -45,13 +45,11 @@ POST http://localhost:8000/register
 Content-Type: application/json
 
 {
-    "full_name": "John Doe",
+    "full_name": "Ezra",
     "email": "ezra4998@gmail.com",
     "contact_phone": "1234567890",
     "address": "123 Main St",
     "role": "admin",
-    "created_at": "2024-07-02",
-    "updated_at": "2024-07-02",
     "password": "password"
 }
 
@@ -60,7 +58,7 @@ POST http://localhost:8000/login
 Content-Type: application/json
 
 {
-    "email": "admin@example.com",
+    "email": "ezra4998@gmail.com",
     "password": "password"
 
 }
@@ -93,8 +91,8 @@ Content-Type: application/json
     "vehicle_specs_id": 1,
     "rental_rate": 2,
     "availability": true,
-    "created_at": "2024-07-02",
-    "updated_at": "2024-07-02"
+    "created_at": "2024-07-07 14:52:20.163",
+    "updated_at": "2024-07-07 14:52:20.163"
 }
 
 ###
@@ -179,12 +177,12 @@ Content-Type: application/json
     "user_id": 1,
     "vehicle_id": 1,
     "location_id": 1,
-    "booking_date": "2024-07-04",
-    "return_date": "2024-07-07",
+    "booking_date": "2024-07-04 14:52:20.163",
+    "return_date": "2024-07-07 14:52:20.163",
     "total_amount": 12000,
     "booking_status": "pending",
-    "created_at": "2024-07-04",
-    "updated_at": "2024-07-04"
+    "created_at": "2024-07-07 14:52:20.163",
+    "updated_at": "2024-07-07 14:52:20.163"
 }
 
 ###
@@ -226,8 +224,8 @@ Content-Type: application/json
     "payment_status": "pending",
     "payment_date": "2024-07-04",
     "transaction_id": "SJKHJ4HS44",
-    "created_at": "2024-07-04",
-    "updated_at": "2024-07-04"
+    "created_at": "2024-07-07 14:52:20.163",
+    "updated_at": "2024-07-07 14:52:20.163"
 }
 
 ###
@@ -267,8 +265,8 @@ Content-Type: application/json
     "subject": "login problem",
     "description": "login problem",
     "status": "pending",
-    "created_at": "2024-07-04",
-    "updated_at": "2024-07-04"
+    "created_at": "2024-07-07 14:52:20.163",
+    "updated_at": "2024-07-07 14:52:20.163"
 }
 
 ###
@@ -288,8 +286,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxl
 
 ###
 GET http://localhost:8000/locations
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
-
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDM3NDYwNX0.eCsMTRe65HKlbunBa-N2AGFx2asxjZxVlXTt4ZWsWg0
 ###
 GET http://localhost:8000/locations?limit=1
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
@@ -300,14 +297,14 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxl
 
 ###
 POST http://localhost:8000/locations
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDM3NDYwNX0.eCsMTRe65HKlbunBa-N2AGFx2asxjZxVlXTt4ZWsWg0
 Content-Type: application/json
 
 {
     "name": "London",
-    "address": "123 Manchester",
-    "created_at": "2024-07-04",
-    "updated_at": "2024-07-04"
+    "address": "123 leicester square",
+    "created_at": "2024-07-07 14:52:20.163",
+    "updated_at": "2024-07-07 14:52:20.163"
 }
 
 ###
@@ -342,8 +339,8 @@ Content-Type: application/json
     "name": "Street 24",
     "location_id": 1,
     "contact_phone": "+1231231232",
-    "created_at": "2024-07-04",
-    "updated_at": "2024-07-04"
+    "created_at": "2024-07-07 14:52:20.163",
+    "updated_at": "2024-07-07 14:52:20.163"
 }
 
 ###
@@ -374,13 +371,13 @@ Content-Type: application/json
 
 {
     "vehicle_id": 1,
-    "acquisition_date": "2024-07-04",
+    "acquisition_date": "2024-07-04 14:52:20.163",
     "depreciation_rate": 2.3,
     "current_value": 2499999,
     "maintenance_cost": 11299,
     "status": "done",
-    "created_at": "2024-07-04",
-    "updated_at": "2024-07-04"
+    "created_at": "2024-07-07 14:52:20.163",
+    "updated_at": "2024-07-07 14:52:20.163"
 }
 
 ###
