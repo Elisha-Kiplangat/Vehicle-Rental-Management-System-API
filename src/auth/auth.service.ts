@@ -5,33 +5,40 @@ import bcrypt from 'bcrypt'
 import { sql } from 'drizzle-orm'
 import mailFunction from '../mail/register'
 
-export const addUserService = async (user: userInsert, password: string) => {
+interface typeUserInsert {
+    full_name: string;
+    email: string;
+    contact_phone: string;
+    address: string;
+    role: string;
+    created_at?: Date;
+    updated_at?: Date;
+}
+
+export const addUserService = async (user: typeUserInsert, password: string) => {
     try {
         const userInsertData: any = {
-            ...user
+            full_name: user.full_name,
+            email: user.email,
+            contact_phone: user.contact_phone,
+            address: user.address,
+            role: user.role || 'user',
+            created_at: user.created_at || new Date(),
+            updated_at: user.updated_at || new Date(),
         };
-
-        userInsertData.created_at = user.created_at || new Date();
-        userInsertData.updated_at = user.updated_at || new Date();
 
         const userResult = await db.insert(usersTable).values(userInsertData).returning({ user_id: usersTable.user_id });
         const userId = userResult[0].user_id;
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const authData: authInsert = {
+        const authData: any = {
             user_id: userId,
             password: hashedPassword,
-            updated_at: ''
+            created_at: user.created_at || new Date(),
+            updated_at: user.updated_at || new Date(),
         };
 
-        if (user.created_at) {
-            authData.created_at = user.created_at;
-        }
-
-        if (user.updated_at) {
-            authData.updated_at = user.updated_at;
-        } 
 
         await db.insert(authenticationTable).values(authData);
         await mailFunction(user.email, 'Registration Successful', user)

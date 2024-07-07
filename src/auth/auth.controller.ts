@@ -5,12 +5,22 @@ import { userInsert } from '../drizzle/schema';
 import bcrypt from 'bcrypt'
 import { sign } from 'hono/jwt'
 
+interface AddUserRequest {
+    full_name: string;
+    email: string;
+    contact_phone: string;
+    address: string;
+    role?: string;
+    created_at?: Date;
+    updated_at?: Date;
+    password: string;
+}
 
 export const addUserController = async (c: Context): Promise<Response> => {
     try {
-        const { full_name, email, contact_phone, address, role, created_at, updated_at, password } = await c.req.json();
+        const { full_name, email, contact_phone, address, role, created_at, updated_at, password }: AddUserRequest = await c.req.json();
 
-        const user: userInsert = {
+        const user = {
             full_name,
             email,
             contact_phone,
