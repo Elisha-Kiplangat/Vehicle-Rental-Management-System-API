@@ -64,7 +64,8 @@ export const loginController = async (c: Context): Promise<Response> => {
 
         let user = userExist?.email;
         let role = userExist?.role;
-        return c.json({ token, user: { role, user } }, 200); 
+        let id = userExist?.user_id;
+        return c.json({ id, token,  role, user  }, 200); 
         
     } catch (error: any) {
         return c.json({ error: error?.message }, 400);

@@ -2,30 +2,24 @@ GET http://localhost:8000
 
 ###
 GET http://localhost:8000/users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
-
+Authorization: 
 ###
 GET http://localhost:8000/users?limit=1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
-
-
-###
-GET http://localhost:8000/users/1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
+Authorization: 
 
 ###
-# POST http://localhost:8000/users
-# Content-Type: application/json
+GET http://localhost:8000/users/20
+Authorization: 
+###
+GET http://localhost:8000/user-booking/20
+Authorization: 
 
-# {
-#     "full_name": "John Doe",
-#     "email": "johndoe@gmail.com",
-#     "contact_phone": "+1234567890",
-#     "address": "123 Main St, New York, NY 10001",
-#     "role": "admin",
-    # "created_at": "2024-07-07 14:52:20.163",
-    # "updated_at": "2024-07-07 14:52:20.163"
-# }
+###
+GET http://localhost:8000/users-support/22
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA3MTU5MDB9.0pgxKbEJhR5Uj1TLZdklcrzQ8hEUp3zYn0M6h22HFgw
+
+
+
 
 ###
 PUT http://localhost:8000/users/3
@@ -72,7 +66,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxl
 
 ###--- vehicle details
 GET http://localhost:8000/vehicleDetails/1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDEwODA5Nn0.mzOzk9DnbKDTX_dPf0ljgoJVwmnwBCPD4jEzr37wgus
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA3MTQ1NDN9.ZS-izBKU-MBaC6Cc7nD2PRR9YJsjd_y2d_4qZhxBF_Q
 
 ###
 GET http://localhost:8000/vehicles?limit=1
