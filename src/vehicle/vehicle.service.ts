@@ -1,4 +1,4 @@
-import { vehicleInsert, vehicleSelect, vehiclesTable } from "../drizzle/schema";
+import { vehicleDetails, vehicleInsert, vehicleSelect, vehiclesTable } from "../drizzle/schema";
 import db from "../drizzle/db";
 import { eq } from 'drizzle-orm'
 
@@ -50,8 +50,14 @@ export const deleteVehicleService = async (id: number) => {
 }
 
 
-export const vehicleDetailsService = async (id: number) => {
+export const vehicleDetailsService = async (id: number): Promise<vehicleDetails> => {
     return await db.query.vehiclesTable.findMany({
+        columns: {
+            vehicle_id: true,
+            vehicle_specification_id: true,
+            rental_rate: true,
+            availability: true
+        },
         with: {
             vehicle_spec: {
                 columns: {

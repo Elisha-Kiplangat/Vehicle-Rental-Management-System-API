@@ -20,7 +20,7 @@ export const getAllVehicleSpecsService = async (limit?: number): Promise<vehicle
 
 export const oneVehicleSpecsService = async (id: number): Promise<vehicleSpecsSelect | undefined> => {
     return await db.query.vehicleSpecsTable.findFirst({
-        where: eq(vehicleSpecsTable.vehicle_specs_id, id)
+        where: eq(vehicleSpecsTable.vehicle_specification_id, id)
     });
 }
 
@@ -35,7 +35,7 @@ export const updateVehicleSpecsService = async (id: number, vehicleSpecs: vehicl
         if (!vehicleSpecsSearched) {
             return false;
         }
-        await db.update(vehicleSpecsTable).set(vehicleSpecs).where(eq(vehicleSpecsTable.vehicle_specs_id, id));
+        await db.update(vehicleSpecsTable).set(vehicleSpecs).where(eq(vehicleSpecsTable.vehicle_specification_id, id));
         return "vehicleSpecs updated successfully";
 
     }
@@ -45,6 +45,6 @@ export const updateVehicleSpecsService = async (id: number, vehicleSpecs: vehicl
 }
 
 export const deleteVehicleSpecsService = async (id: number) => {
-    await db.delete(vehicleSpecsTable).where(eq(vehicleSpecsTable.vehicle_specs_id, id));
+    await db.delete(vehicleSpecsTable).where(eq(vehicleSpecsTable.vehicle_specification_id, id));
     return "vehicleSpecs deleted successfully"
 }
