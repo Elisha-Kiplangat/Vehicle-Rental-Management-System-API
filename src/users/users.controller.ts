@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import { getAllUserService, oneUserService, addUserService, updateUserService, deleteUserService } from "./users.service";
+import { getAllUserService, oneUserService, addUserService, updateUserService, deleteUserService, userWithBookingService, userSupportService } from "./users.service";
 
 export const getAllUsersController = async (c: Context) => {
     try {
@@ -77,4 +77,24 @@ export const deleteUserController = async (c: Context) => {
     catch (error: any) {
         return c.json({ error: error?.message }, 400)
     }
+}
+
+export const userWithBookingController = async (c: Context) => {
+    const id = parseInt(c.req.param("id"));
+    if (isNaN(id)) return c.text("invalid id")
+    const user = await userWithBookingService(id);
+    if (user == null) {
+        return c.text("User info not found", 404);
+    }
+    return c.json(user, 200);
+}
+
+export const userSupportController = async (c: Context) => {
+    const id = parseInt(c.req.param("id"));
+    if (isNaN(id)) return c.text("invalid id")
+    const user = await userSupportService(id);
+    if (user == null) {
+        return c.text("User info not found", 404);
+    }
+    return c.json(user, 200);
 }

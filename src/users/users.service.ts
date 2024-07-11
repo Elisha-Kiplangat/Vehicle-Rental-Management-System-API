@@ -1,4 +1,4 @@
-import { userInsert, userSelect, usersTable } from "../drizzle/schema";
+import { TUserSupport, userInsert, userSelect, usersTable, UserWithBooking } from "../drizzle/schema";
 import db from "../drizzle/db";
 import { eq } from 'drizzle-orm'
 
@@ -47,4 +47,52 @@ export const updateUserService = async (id: number, users: userInsert) => {
 export const deleteUserService = async (id: number) => {
     await db.delete(usersTable).where(eq(usersTable.user_id, id));
     return "users deleted successfully"
+}
+
+
+export const userWithBookingService = async (id: number): Promise<UserWithBooking | null> => {
+    return await db.query.usersTable.findMany({
+        columns: {
+            user_id: true,
+            full_name: true,
+            email: true,
+            contact_phone: true,
+            address: true
+        },
+        with: {
+            
+            bookings: {
+                columns: {
+                    booking_id: true,
+                    vehicle_id: true,
+                    location_id: true,
+                    booking_status: true
+                }
+            }
+        },
+        where: eq(usersTable.user_id, id)
+    })
+}
+
+export const userSupportService = async (id: number): Promise<TUserSupport | null> => {
+    return await db.query.usersTable.findMany({
+        columns: {
+            user_id: true,
+            full_name: true,
+            email: true,
+            contact_phone: true,
+            address: true
+        },
+        with: {
+            customerSupportTickets: {
+                columns: {
+                    ticket_id: true,
+                    subject: true,
+                    description: true,
+                    status: true
+                }
+            }
+        },
+        where: eq(usersTable.user_id, id)
+    })
 }
