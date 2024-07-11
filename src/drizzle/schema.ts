@@ -23,8 +23,8 @@ export const authenticationTable = pgTable("authentication", {
 });
 
 export const vehiclesTable = pgTable("vehicles", {
-    vehicle_id: serial("vehicleSpec_id").primaryKey(),
-    vehicle_specs_id: integer("vehicle_id").notNull().references(() => vehicleSpecsTable.vehicle_specs_id),
+    vehicle_id: serial("vehicle_id").primaryKey(),
+    vehicle_specification_id: integer("vehicle_specification_id").notNull().references(() => vehicleSpecsTable.vehicle_specification_id),
     rental_rate: real("rental_rate").notNull(),
     availability: boolean("availability").notNull(),
     created_at: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
@@ -32,7 +32,7 @@ export const vehiclesTable = pgTable("vehicles", {
 });
 
 export const vehicleSpecsTable = pgTable("vehicle_specifications", {
-    vehicle_specs_id: serial("vehicle_specs_id").primaryKey(),
+    vehicle_specification_id: serial("vehicle_specification_id").primaryKey(),
     manufacturer: varchar("manufacturer", { length: 255 }).notNull(),
     model: varchar("model", { length: 255 }).notNull(),
     year: integer("year").notNull(),
@@ -133,8 +133,8 @@ export const vehicleSpecsTableRelation = relations(vehicleSpecsTable, ({ many })
 
 export const vehiclesTableRelation = relations(vehiclesTable, ({ one, many }) => ({
     vehicle_spec: one(vehicleSpecsTable, {
-        fields: [vehiclesTable.vehicle_specs_id],
-        references: [vehicleSpecsTable.vehicle_specs_id]
+        fields: [vehiclesTable.vehicle_specification_id],
+        references: [vehicleSpecsTable.vehicle_specification_id]
     }),
     bookings: many(bookingsTable),
     fleetManagement: many(fleetManagementTable)
@@ -219,9 +219,60 @@ export type branchesSelect = typeof branchesTable.$inferSelect;
 export type fleetInsert = typeof fleetManagementTable.$inferInsert;
 export type fleetSelect = typeof fleetManagementTable.$inferSelect;
 
+interface bookings {
+    booking_id: number;
+    vehicle_id: number;
+    location_id: number;
+    booking_status: string;
+}
 
+interface TuserBooking {
+    user_id: number;
+    full_name: string;
+    email: string;
+    contact_phone: string;
+    address: string;
+    bookings: bookings[];
 
+}
 
+export type UserWithBooking = TuserBooking[];
+
+interface specifications {
+    model: string;
+    fuel_type: string;
+    seating_capacity: number;
+}
+
+interface vehicle {
+    vehicle_id: number;
+    vehicle_specification_id: number;
+    rental_rate: number;
+    availability: boolean;
+    vehicle_spec: specifications;
+
+}
+
+export type vehicleDetails = vehicle[];
+
+interface customerSupportTicket {
+    ticket_id: number;
+    subject: string;
+    description: string;
+    status: string;
+
+}
+interface userSupport {
+    user_id: number;
+    full_name: string;
+    email: string;
+    contact_phone: string;
+    address: string;
+    customerSupportTickets: customerSupportTicket[];
+
+}
+
+export type TUserSupport = userSupport[];
 
 
 
