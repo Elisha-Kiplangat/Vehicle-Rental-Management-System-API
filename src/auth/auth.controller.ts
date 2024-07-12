@@ -57,6 +57,7 @@ export const loginController = async (c: Context): Promise<Response> => {
         const payload = {
             sub: userExist.email,
             role: userExist.role,
+            user_id: userExist.user_id,
             exp: Math.floor(Date.now() / 1000) + 60 * 180 
         };
         const secret = process.env.JWT_SECRET as string; 
@@ -64,8 +65,8 @@ export const loginController = async (c: Context): Promise<Response> => {
 
         let user = userExist?.email;
         let role = userExist?.role;
-        let id = userExist?.user_id;
-        return c.json({ id, token,  role, user  }, 200); 
+        let user_id = userExist?.user_id;
+        return c.json({ user_id, token,  role, user  }, 200); 
         
     } catch (error: any) {
         return c.json({ error: error?.message }, 400);
