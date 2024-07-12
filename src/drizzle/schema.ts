@@ -219,6 +219,10 @@ export type branchesSelect = typeof branchesTable.$inferSelect;
 export type fleetInsert = typeof fleetManagementTable.$inferInsert;
 export type fleetSelect = typeof fleetManagementTable.$inferSelect;
 
+
+// return types
+
+
 interface bookings {
     booking_id: number;
     vehicle_id: number;
@@ -274,5 +278,16 @@ interface userSupport {
 
 export type TUserSupport = userSupport[];
 
+interface branches {
+    name: string;
+    contact_phone: string;
+}
 
+interface location {
+    name: string;
+    address: string;
+    branches: branches[];
+}
+
+export type TLocationBranch = location[]
 

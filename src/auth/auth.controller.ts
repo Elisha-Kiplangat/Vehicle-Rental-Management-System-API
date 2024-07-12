@@ -46,7 +46,7 @@ export const loginController = async (c: Context): Promise<Response> => {
         if (!userExist) return c.json({ error: 'User not found' }, 404); 
 
         const authDetails = await getAuthDetails(userExist.user_id);
-        if (!authDetails) return c.json({ error: 'Authentication details not found' }, 404); // Not found
+        if (!authDetails) return c.json({ error: 'Authentication details not found' }, 404);
 
         
         const userMatch = await bcrypt.compare(password, authDetails.password as string);

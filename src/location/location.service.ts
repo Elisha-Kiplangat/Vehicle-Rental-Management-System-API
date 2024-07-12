@@ -1,4 +1,4 @@
-import { locationInsert, locationSelect, locationsTable } from "../drizzle/schema";
+import { locationInsert, locationSelect, locationsTable, TLocationBranch } from "../drizzle/schema";
 import db from "../drizzle/db";
 import { eq } from 'drizzle-orm'
 
@@ -52,4 +52,24 @@ export const updateLocationService = async (id: number, locations: locationInser
 export const deleteLocationService = async (id: number) => {
     await db.delete(locationsTable).where(eq(locationsTable.location_id, id));
     return "location deleted successfully"
+}
+
+export const locationWithBranchService = async (id: number): Promise<TLocationBranch> => {
+    return await db.query.locationsTable.findMany({
+        columns: {
+            name: true,
+            address: true,
+
+        },
+        with: {
+            branches: {
+                columns: {
+                    name: true,
+                    contact_phone: true,
+
+                }
+            }
+        },
+        where: eq(locationsTable.location_id, id)
+    })
 }

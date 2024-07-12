@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import { getAllLocationService, oneLocationService, addLocationService, updateLocationService, deleteLocationService } from "./location.service";
+import { getAllLocationService, oneLocationService, addLocationService, updateLocationService, deleteLocationService, locationWithBranchService } from "./location.service";
 
 export const getAllLocationsController = async (c: Context) => {
     try {
@@ -77,4 +77,14 @@ export const deleteLocationController = async (c: Context) => {
     catch (error: any) {
         return c.json({ error: error?.message }, 400)
     }
+}
+
+export const locationWithBranchController = async (c: Context) => {
+    const id = parseInt(c.req.param("id"));
+    if (isNaN(id)) return c.text("invalid id")
+    const user = await locationWithBranchService(id);
+    if (user == null) {
+        return c.text("branch info not found", 404);
+    }
+    return c.json(user, 200);
 }

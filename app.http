@@ -12,13 +12,11 @@ GET http://localhost:8000/users/20
 Authorization: 
 ###
 GET http://localhost:8000/user-booking/20
-Authorization: 
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA3OTgwMzR9.qAb7ftQAEWP-c5fJp34jxhQyYcPhmi3Qavjp72mJo0k
 
 ###
 GET http://localhost:8000/users-support/22
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA3MTU5MDB9.0pgxKbEJhR5Uj1TLZdklcrzQ8hEUp3zYn0M6h22HFgw
-
-
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA3OTgwMzR9.qAb7ftQAEWP-c5fJp34jxhQyYcPhmi3Qavjp72mJo0k
 
 
 ###
@@ -66,7 +64,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxl
 
 ###--- vehicle details
 GET http://localhost:8000/vehicleDetails/1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA3MTQ1NDN9.ZS-izBKU-MBaC6Cc7nD2PRR9YJsjd_y2d_4qZhxBF_Q
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA3OTgwMzR9.qAb7ftQAEWP-c5fJp34jxhQyYcPhmi3Qavjp72mJo0k
 
 ###
 GET http://localhost:8000/vehicles?limit=1
@@ -288,6 +286,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxl
 ###
 GET http://localhost:8000/locations/1
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
+
+###
+GET http://localhost:8000/locations-branches/2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA3OTgwMzR9.qAb7ftQAEWP-c5fJp34jxhQyYcPhmi3Qavjp72mJo0k
 
 ###
 POST http://localhost:8000/locations

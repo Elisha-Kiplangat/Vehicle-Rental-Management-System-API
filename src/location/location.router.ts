@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { getAllLocationsController, oneLocationController, addLocationController, updateLocationController, deleteLocationController } from "./location.controller";
+import { getAllLocationsController, oneLocationController, addLocationController, updateLocationController, deleteLocationController, locationWithBranchController } from "./location.controller";
 import { zValidator } from "@hono/zod-validator";
 import { locationSchema } from "../validators";
 import { adminRoleAuth, allRoleAuth } from "../middleware/bearAuth";
@@ -8,7 +8,9 @@ export const locationsRouter = new Hono();
 
 locationsRouter.get("/locations", allRoleAuth, getAllLocationsController);
 
-locationsRouter.get("/locations/:id", allRoleAuth, oneLocationController)
+locationsRouter.get("/locations/:id", allRoleAuth, oneLocationController);
+
+locationsRouter.get("/locations-branches/:id", allRoleAuth, locationWithBranchController);
 
 locationsRouter.post("/locations", adminRoleAuth, zValidator('json', locationSchema, (result, c) => {
     if (!result.success) {
