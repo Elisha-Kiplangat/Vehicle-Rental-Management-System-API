@@ -51,6 +51,11 @@ export const addUserController = async (c: Context) => {
 export const updateUserController = async (c: Context) => {
     const id = parseInt(c.req.param("id"));
     if (isNaN(id)) return c.text("invalid id")
+    const token = c.req.header('Authorization');
+
+    const decoded = await verifyToken(token!, process.env.JWT_SECRET as string)
+
+    if (decoded?.user_id !== id && decoded?.role != 'admin') return c.text("not authorized", 404);
     const user = await c.req.json();
 
     try {
@@ -71,7 +76,12 @@ export const updateUserController = async (c: Context) => {
 export const deleteUserController = async (c: Context) => {
     const id = Number(c.req.param("id"));
     if (isNaN(id)) return c.text("invalid id")
+    const token = c.req.header('Authorization');
 
+    const decoded = await verifyToken(token!, process.env.JWT_SECRET as string)
+
+    if (decoded?.user_id !== id && decoded?.role != 'admin') return c.text("not authorized", 404);
+    
     try{
          const user = await oneUserService(id);
         if (user == undefined) return c.text("User not found", 404);
@@ -90,6 +100,12 @@ export const deleteUserController = async (c: Context) => {
 export const userWithBookingController = async (c: Context) => {
     const id = parseInt(c.req.param("id"));
     if (isNaN(id)) return c.text("invalid id")
+    const token = c.req.header('Authorization');
+
+    const decoded = await verifyToken(token!, process.env.JWT_SECRET as string)
+
+    if (decoded?.user_id !== id && decoded?.role != 'admin') return c.text("not authorized", 404);
+
     const user = await userWithBookingService(id);
     if (user == null) {
         return c.text("User info not found", 404);
@@ -100,6 +116,12 @@ export const userWithBookingController = async (c: Context) => {
 export const userSupportController = async (c: Context) => {
     const id = parseInt(c.req.param("id"));
     if (isNaN(id)) return c.text("invalid id")
+    const token = c.req.header('Authorization');
+
+    const decoded = await verifyToken(token!, process.env.JWT_SECRET as string)
+
+    if (decoded?.user_id !== id && decoded?.role != 'admin') return c.text("not authorized", 404);
+    
     const user = await userSupportService(id);
     if (user == null) {
         return c.text("User info not found", 404);
