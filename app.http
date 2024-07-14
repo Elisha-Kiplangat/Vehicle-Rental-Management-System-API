@@ -2,7 +2,7 @@ GET http://localhost:8000
 
 ###
 GET http://localhost:8000/users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlbGlzaGFraXBsYW5nYUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsInVzZXJfaWQiOjIxLCJleHAiOjE3MjA4MDIxMDd9.QXQhmfAt2Fo7RLGO9SVJR_lhgDCCD4iqIno79-9wY5M
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJ1c2VyX2lkIjoyMCwiZXhwIjoxNzIwODAzODcwfQ.UpFpw1Pji_bzuoXaflQb5q0CK4CTYHIP8J8VVyRhNDs
 
 ###
 GET http://localhost:8000/users?limit=1
@@ -21,12 +21,12 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFp
 
 
 ###
-PUT http://localhost:8000/users/3
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
+PUT http://localhost:8000/users/21
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlbGlzaGFraXBsYW5nYUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsInVzZXJfaWQiOjIxLCJleHAiOjE3MjA4ODU3MTR9.f8DKn5c9q2_T79ZIRNB-aIxNDbUVqGbPWMXzuKnOY4k
 Content-Type: application/json
 
 {
-    "full_name": "John Doe 2"
+    "full_name": "Elisha K"
 }
 
 ###
@@ -46,7 +46,7 @@ Content-Type: application/json
     "password": "password"
 }
 
-###---------------------------------------Login (user, auth tables)-----------
+###--------------------------------------Login (user, auth tables)-----------
 POST http://localhost:8000/login
 Content-Type: application/json
 
@@ -60,16 +60,16 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8000/vehicles
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDEwODA5Nn0.mzOzk9DnbKDTX_dPf0ljgoJVwmnwBCPD4jEzr37wgus
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA3OTgwMzR9.qAb7ftQAEWP-c5fJp34jxhQyYcPhmi3Qavjp72mJo0k
 
 
 ###--- vehicle details
-GET http://localhost:8000/vehicleDetails/1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA3OTgwMzR9.qAb7ftQAEWP-c5fJp34jxhQyYcPhmi3Qavjp72mJo0k
+GET http://localhost:8000/vehicleDetails
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJ1c2VyX2lkIjoyMCwiZXhwIjoxNzIwOTA1MDIzfQ.qasawLnzwcyorRqwUIIXkAtp6lJI2VL_ifke93adUqM
 
 ###
 GET http://localhost:8000/vehicles?limit=1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJ1c2VyX2lkIjoyMCwiZXhwIjoxNzIwODk4Mzg4fQ.GZG68NHnfWXOCPwdO3irnsADjv5o7UdEMC2O7FEK6qA
 
 ###
 GET http://localhost:8000/vehicles/1
@@ -388,3 +388,11 @@ Content-Type: application/json
 ###
 DELETE http://localhost:8000/fleets/delete/1
 
+###
+POST http://localhost:8000/create-payment-intent
+Content-Type: application/json
+
+{
+  "amount": 1000,
+  "currency": "usd"
+}
