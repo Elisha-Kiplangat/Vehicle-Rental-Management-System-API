@@ -80,11 +80,11 @@ export const deleteVehicleController = async (c: Context) => {
 }
 
 export const vehicleDetailsController = async (c: Context) => {
-    const id = parseInt(c.req.param("id"));
-    if (isNaN(id)) return c.text("Invalid ID", 400);
+    // const id = parseInt(c.req.param("id"));
+    // if (isNaN(id)) return c.text("Invalid ID", 400);
 
     try {
-        const vehicleDetails = await vehicleDetailsService(id);
+        const vehicleDetails = await vehicleDetailsService();
         if (!vehicleDetails || vehicleDetails.length === 0) {
             return c.text("Vehicle not found", 404);
         }

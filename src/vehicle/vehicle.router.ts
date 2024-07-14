@@ -20,6 +20,6 @@ vehiclesRouter.put("/vehicles/:id", adminRoleAuth, updateVehicleController)
 
 vehiclesRouter.delete("/vehicles/delete/:id", adminRoleAuth, deleteVehicleController)
 
-vehiclesRouter.get('/vehicleDetails/:id', vehicleDetailsController)
+vehiclesRouter.get('/vehicleDetails', allRoleAuth, vehicleDetailsController)
 
 

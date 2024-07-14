@@ -50,7 +50,7 @@ export const deleteVehicleService = async (id: number) => {
 }
 
 
-export const vehicleDetailsService = async (id: number): Promise<vehicleDetails> => {
+export const vehicleDetailsService = async (): Promise<vehicleDetails> => {
     return await db.query.vehiclesTable.findMany({
         columns: {
             vehicle_id: true,
@@ -67,6 +67,6 @@ export const vehicleDetailsService = async (id: number): Promise<vehicleDetails>
                 }
             }
         },
-        where: eq(vehiclesTable.vehicle_id, id)
+        // where: eq(vehiclesTable.vehicle_id, id)
     })
 }
