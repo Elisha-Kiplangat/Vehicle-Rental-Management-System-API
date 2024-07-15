@@ -15,6 +15,12 @@ interface typeUserInsert {
     updated_at?: Date;
 }
 
+interface TuserLogin {
+    user_id: number;
+    email: string;
+    role: string;
+}
+
 export const addUserService = async (user: typeUserInsert, password: string) => {
     try {
         const userInsertData: any = {

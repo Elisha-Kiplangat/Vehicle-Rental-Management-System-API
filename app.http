@@ -21,7 +21,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFp
 
 
 ###
-PUT http://localhost:8000/users/21
+PUT http://localhost:8000/user/update/21
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlbGlzaGFraXBsYW5nYUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsInVzZXJfaWQiOjIxLCJleHAiOjE3MjA4ODU3MTR9.f8DKn5c9q2_T79ZIRNB-aIxNDbUVqGbPWMXzuKnOY4k
 Content-Type: application/json
 
@@ -30,8 +30,8 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:8000/delete/4
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
+DELETE http://localhost:8000/user/delete/21
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlbGlzaGFraXBsYW5nYUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsInVzZXJfaWQiOjIxLCJleHAiOjE3MjEwNzQzNzd9.Q6iZlQsUmI53aadQOvO6FNWDY1bHNBZow0GHIRWuWl4
 
 ###---------------------------------------Register (user, auth tables)--
 POST http://localhost:8000/register
@@ -51,7 +51,7 @@ POST http://localhost:8000/login
 Content-Type: application/json
 
 {
-    "email": "ezra4998@gmail.com",
+    "email": "elishakiplanga@gmail.com",
     "password": "password"
 
 }
@@ -158,8 +158,9 @@ GET http://localhost:8000/bookings?limit=1
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
 
 ###
-GET http://localhost:8000/bookings/1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
+GET http://localhost:8000/bookings/20
+GET http://localhost:8000/bookings/20
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlbGlzaGFraXBsYW5nYUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsInVzZXJfaWQiOjIzLCJleHAiOjE3MjEwODU0Mjl9.A6jY3HxgHYR1IBxQ7WwlSxiaAsfPcxZkkgQUdFvL0Mw
 
 ###
 POST http://localhost:8000/bookings
