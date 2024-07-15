@@ -1,4 +1,4 @@
-import { TUserSupport, userInsert, userSelect, usersTable, UserWithBooking } from "../drizzle/schema";
+import { authenticationTable, TUserSupport, userInsert, userSelect, usersTable, UserWithBooking } from "../drizzle/schema";
 import db from "../drizzle/db";
 import { eq } from 'drizzle-orm'
 
@@ -45,9 +45,13 @@ export const updateUserService = async (id: number, users: userInsert) => {
 }
 
 export const deleteUserService = async (id: number) => {
+    await db.delete(authenticationTable).where(eq(authenticationTable.user_id, id));
     await db.delete(usersTable).where(eq(usersTable.user_id, id));
     return "users deleted successfully"
 }
+
+
+
 
 
 export const userWithBookingService = async (id: number): Promise<UserWithBooking | null> => {

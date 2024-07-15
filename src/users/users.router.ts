@@ -22,6 +22,6 @@ usersRouter.get("/users-support/:id", allRoleAuth, userSupportController)
 //     }
 // }), addUserController)
 
-usersRouter.put("/users/:id", allRoleAuth, updateUserController)
+usersRouter.put("/user/update/:id", allRoleAuth, updateUserController)
 
-usersRouter.delete("/delete/:id", allRoleAuth, deleteUserController)
+usersRouter.delete("/user/delete/:id", allRoleAuth, deleteUserController)
