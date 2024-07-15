@@ -20,7 +20,7 @@ export const getAllBookingService = async (limit?: number): Promise<bookingsSele
 
 export const oneBookingService = async (id: number): Promise<bookingsSelect | undefined> => {
     return await db.query.bookingsTable.findFirst({
-        where: eq(bookingsTable.booking_id, id)
+        where: eq(bookingsTable.user_id, id)
     });
 }
 
