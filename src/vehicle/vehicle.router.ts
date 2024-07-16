@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { getAllVehiclesController, oneVehicleController, addVehicleController, updateVehicleController, deleteVehicleController, vehicleDetailsController } from "./vehicle.controller";
+import { getAllVehiclesController, oneVehicleController, addVehicleController, updateVehicleController, deleteVehicleController, vehicleDetailsController, addVehicleWithDetailsController } from "./vehicle.controller";
 import { zValidator } from "@hono/zod-validator";
 import { vehicleSchema } from "../validators";
 import { adminRoleAuth, allRoleAuth } from "../middleware/bearAuth";
@@ -15,6 +15,8 @@ vehiclesRouter.post("/vehicles", adminRoleAuth, zValidator('json', vehicleSchema
         return c.json(result.error, 400)
     }
 }), addVehicleController)
+
+vehiclesRouter.post("/vehicles/details/add",adminRoleAuth, addVehicleWithDetailsController)
 
 vehiclesRouter.put("/vehicles/:id", adminRoleAuth, updateVehicleController)
 

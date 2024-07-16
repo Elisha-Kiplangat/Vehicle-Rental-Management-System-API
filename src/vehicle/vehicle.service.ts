@@ -1,4 +1,4 @@
-import { vehicleDetails, vehicleInsert, vehicleSelect, vehiclesTable } from "../drizzle/schema";
+import { vehicleDetails, vehicleInsert, vehicleSelect, vehiclesTable, vehicleSpecsSelect, vehicleSpecsTable } from "../drizzle/schema";
 import db from "../drizzle/db";
 import { eq } from 'drizzle-orm'
 
@@ -67,6 +67,39 @@ export const vehicleDetailsService = async (): Promise<vehicleDetails> => {
                 }
             }
         },
-        // where: eq(vehiclesTable.vehicle_id, id)
+        
     })
 }
+
+interface Tvehicle {
+    vehicle_id?: number;
+    created_at?: string;
+    updated_at?: string;
+    vehicle_specification_id: number;
+    rental_rate: number;
+    availability: boolean;
+}
+
+interface TvehicleSpecs {
+    manufacturer: string;
+    model: string;
+    year: number;
+    fuel_type: string;
+    engine_capacity: string;
+    transmission: string;
+    seating_capacity: number;
+    color: string;
+    features: string;
+}
+
+export const addVehicleWithDetailsService = async (vehicle: Tvehicle,vehicleSpecs: TvehicleSpecs) => {
+    
+    const vehicleSpecsResult = await db.insert(vehicleSpecsTable).values(vehicleSpecs).returning({ vehicle_specification_id: vehicleSpecsTable.vehicle_specification_id });
+    const vehicleSpecsId = vehicleSpecsResult[0].vehicle_specification_id;
+
+    vehicle.vehicle_specification_id = vehicleSpecsId;
+
+    await db.insert(vehiclesTable).values(vehicle)
+
+    return "Vehicle with specifications added successfully";
+};

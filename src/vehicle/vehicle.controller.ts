@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import { getAllVehicleService, oneVehicleService, addVehicleService, updateVehicleService, deleteVehicleService, vehicleDetailsService } from "./vehicle.service";
+import { getAllVehicleService, oneVehicleService, addVehicleService, updateVehicleService, deleteVehicleService, vehicleDetailsService, addVehicleWithDetailsService } from "./vehicle.service";
 
 export const getAllVehiclesController = async (c: Context) => {
     try {
@@ -92,5 +92,55 @@ export const vehicleDetailsController = async (c: Context) => {
     } catch (error) {
         console.error(error);
         return c.text("Internal Server Error", 500);
+    }
+};
+
+
+interface VehicleSpecs {
+    manufacturer: string;
+    model: string;
+    year: number;
+    fuel_type: string;
+    engine_capacity: string;
+    transmission: string;
+    seating_capacity: number;
+    color: string;
+    features: string;
+    created_at?: string;
+    updated_at?: string;
+    vehicle_specification_id: number;
+    rental_rate: number;
+    availability: boolean;
+}
+
+export const addVehicleWithDetailsController = async (c: Context) => {
+    try {
+        const { manufacturer, model, year, fuel_type, engine_capacity, transmission, seating_capacity, color, features, created_at, updated_at, vehicle_specification_id, rental_rate, availability }: VehicleSpecs = await c.req.json();
+
+        const vehicleSpecsData = {
+            manufacturer,
+            model,
+            year,
+            fuel_type,
+            engine_capacity,
+            transmission,
+            seating_capacity,
+            color,
+            features
+        };
+
+        const vehicleData = {
+            created_at,
+            updated_at,
+            vehicle_specification_id,
+            rental_rate,
+            availability,
+        };
+
+        const message = await addVehicleWithDetailsService(vehicleData, vehicleSpecsData);
+
+        return c.json({ message }, 200);
+    } catch (error: any) {
+        return c.json({ error: error.message }, 500);
     }
 };
