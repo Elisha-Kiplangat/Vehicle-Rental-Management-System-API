@@ -16,7 +16,7 @@ vehiclesRouter.post("/vehicles", adminRoleAuth, zValidator('json', vehicleSchema
     }
 }), addVehicleController)
 
-vehiclesRouter.post("/vehicles/details/add",adminRoleAuth, addVehicleWithDetailsController)
+vehiclesRouter.post("/add/vehicles", adminRoleAuth, addVehicleWithDetailsController)
 
 vehiclesRouter.put("/vehicles/:id", adminRoleAuth, updateVehicleController)
 
