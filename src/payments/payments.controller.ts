@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import { getAllPaymentService, onePaymentService, addPaymentService, updatePaymentService, deletePaymentService } from "./payments.service";
+import { getAllPaymentService, onePaymentService, addPaymentService, updatePaymentService, deletePaymentService, createCheckoutSession, createBookingAndPayment } from "./payments.service";
 
 export const getAllPaymentsController = async (c: Context) => {
     try {
@@ -78,3 +78,81 @@ export const deletePaymentController = async (c: Context) => {
         return c.json({ error: error?.message }, 400)
     }
 }
+
+//
+
+export const createBookingAndPaymentHandler = async (c: Context) => {
+    const data = await c.req.json();
+    try {
+        const result = await createBookingAndPayment(data);
+        return c.json({ message: result }, 201);
+    } catch (error: any) {
+        return c.json({ error: error.message }, 400);
+    }
+};
+
+//
+
+import { createPaymentIntent, handleWebhook } from './payments.service';
+
+
+export const createPaymentIntentHandler = async (c: Context) => {
+    try {
+        const body = await c.req.json();
+        const { amount, currency, booking_id } = body;
+
+        if (!amount || !currency || !booking_id) {
+            return c.json({ error: 'Amount, currency, and booking ID are required' }, 400);
+        }
+
+        const paymentIntent = await createPaymentIntent(amount, currency, booking_id);
+        return c.json({ clientSecret: paymentIntent.client_secret });
+    } catch (error: any) {
+        console.error('Error creating payment intent:', error.message);
+        return c.json({ error: error.message }, 400);
+    }
+};
+
+export const createCheckoutSessionHandler = async (c: Context) => {
+    try {
+        const body = await c.req.json();
+        const { amount, currency, booking_id } = body;
+
+        if (!amount || !currency || !booking_id) {
+            return c.json({ error: 'Amount, currency, and booking ID are required' }, 400);
+        }
+
+        const session = await createCheckoutSession(amount, currency, booking_id);
+        return c.json({ sessionId: session.id });
+    } catch (error: any) {
+        console.error('Error creating checkout session:', error.message);
+        return c.json({ error: error.message }, 400);
+    }
+};
+
+export const webhookHandler = async (c: Context) => {
+    const payload = await c.req.text();
+    const sig = c.req.header('stripe-signature');
+    const webhookSecret = 'your-webhook-signing-secret';
+
+    if (!sig) {
+        console.error('Error: Missing Stripe signature');
+        return c.text('Missing Stripe signature', 400);
+    }
+
+    try {
+        const event = await handleWebhook(payload, sig, webhookSecret);
+        return c.text('Received');
+    } catch (error: any) {
+        console.error(`Webhook Error: ${error.message}`);
+        return c.text(error.message, 400);
+    }
+};
+
+export const successHandler = async (c: Context) => {
+    return c.text('Payment Successful! Thank you for your purchase.');
+};
+
+export const cancelHandler = async (c: Context) => {
+    return c.text('Payment cancelled! Try again.');
+};

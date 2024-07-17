@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { getAllPaymentsController, onePaymentController, addPaymentController, updatePaymentController, deletePaymentController } from "./payments.controller";
+import { getAllPaymentsController, onePaymentController, addPaymentController, updatePaymentController, deletePaymentController, createCheckoutSessionHandler, successHandler, cancelHandler, createBookingAndPaymentHandler } from "./payments.controller";
 import { zValidator } from "@hono/zod-validator";
 import { paymentSchema } from "../validators";
 import { adminRoleAuth, userRoleAuth, allRoleAuth } from "../middleware/bearAuth";
@@ -19,3 +19,13 @@ paymentsRouter.post("/payments", userRoleAuth, zValidator('json', paymentSchema,
 paymentsRouter.put("/payments/:id", allRoleAuth, updatePaymentController)
 
 paymentsRouter.delete("/payments/delete/:id", adminRoleAuth, deletePaymentController)
+
+paymentsRouter.post('/booking/payment', createBookingAndPaymentHandler)
+
+import { createPaymentIntentHandler, webhookHandler } from './payments.controller';
+
+paymentsRouter.post('/create-payment-intent', createPaymentIntentHandler);
+paymentsRouter.post('/create-checkout-session', createCheckoutSessionHandler);
+paymentsRouter.post('/webhook', webhookHandler);
+paymentsRouter.get('/success', successHandler);
+paymentsRouter.get('/cancel', cancelHandler);
