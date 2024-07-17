@@ -18,16 +18,19 @@ export const getAllBookingService = async (limit?: number): Promise<bookingsSele
     }
 }
 
-export const oneBookingService = async (id: number): Promise<bookingsSelect | undefined> => {
-    return await db.query.bookingsTable.findFirst({
+export const oneBookingService = async (id: number): Promise<bookingsSelect[]> => {
+    return await db.query.bookingsTable.findMany({
         where: eq(bookingsTable.user_id, id)
     });
 }
 
 export const addBookingService = async (bookings: bookingsSelect) => {
-    await db.insert(bookingsTable).values(bookings);
-    return "booking added successfully";
-}
+    const [newBooking] = await db
+        .insert(bookingsTable)
+        .values(bookings)
+        .returning({ booking_id: bookingsTable.booking_id });
+    return newBooking;
+}; 
 
 export const updateBookingService = async (id: number, bookings: bookingsInsert) => {
     try {

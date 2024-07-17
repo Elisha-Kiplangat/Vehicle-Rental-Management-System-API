@@ -31,14 +31,12 @@ export const addBookingController = async (c: Context) => {
     try {
         const booking = await c.req.json();
         const newBooking = await addBookingService(booking);
-
-        return c.json(newBooking, 201)
-
+        return c.json(newBooking, 201);
+    } catch (err) {
+        return c.json({ error: 'Internal Server Error' }, 500);
     }
-    catch (err) {
-        return c.json({ error: 'Internal Server Error' }, 500)
-    }
-}
+};
+
 
 export const updateBookingController = async (c: Context) => {
     const id = parseInt(c.req.param("id"));
