@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import { getAllPaymentService, onePaymentService, addPaymentService, updatePaymentService, deletePaymentService, createCheckoutSession, createBookingAndPayment } from "./payments.service";
+import { getAllPaymentService, onePaymentService, addPaymentService, updatePaymentService, deletePaymentService, createCheckoutSession, createBookingAndPayment, updateBookingAndPaymentStatus } from "./payments.service";
 
 export const getAllPaymentsController = async (c: Context) => {
     try {
@@ -123,17 +123,20 @@ export const createCheckoutSessionHandler = async (c: Context) => {
         }
 
         const session = await createCheckoutSession(amount, currency, booking_id);
-        return c.json({ sessionId: session.id });
+        const checkoutUrl = session.url;
+
+        return c.json({ sessionId: session.id, checkoutUrl: checkoutUrl });
     } catch (error: any) {
         console.error('Error creating checkout session:', error.message);
         return c.json({ error: error.message }, 400);
     }
 };
 
+
 export const webhookHandler = async (c: Context) => {
     const payload = await c.req.text();
     const sig = c.req.header('stripe-signature');
-    const webhookSecret = 'your-webhook-signing-secret';
+    const webhookSecret = '';
 
     if (!sig) {
         console.error('Error: Missing Stripe signature');
@@ -150,7 +153,20 @@ export const webhookHandler = async (c: Context) => {
 };
 
 export const successHandler = async (c: Context) => {
-    return c.text('Payment Successful! Thank you for your purchase.');
+    try {
+        const transactionId = c.req.query('transaction_id'); 
+
+        if (!transactionId) {
+            return c.text('Transaction ID is required', 400);
+        }
+
+        await updateBookingAndPaymentStatus(transactionId);
+
+        return c.redirect('/bookings');
+    } catch (error: any) {
+        console.error('Error updating booking and payment status:', error.message);
+        return c.text('Failed to update booking and payment status', 500);
+    }
 };
 
 export const cancelHandler = async (c: Context) => {

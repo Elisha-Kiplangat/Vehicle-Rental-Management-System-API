@@ -126,7 +126,7 @@ export const createCheckoutSession = async (amount: number, currency: string, bo
             },
         ],
         mode: 'payment',
-        success_url: `http://localhost:8000/success`,
+        success_url: `http://localhost:5173/dashboard/user/bookings`,
         cancel_url: `http://localhost:8000/cancel`,
     });
 
@@ -151,9 +151,51 @@ export const handleWebhook = async (payload: string, sig: string, webhookSecret:
                 payment_status: 'Succeeded',
                 payment_date: new Date(session.created * 1000).toISOString(),
             }).where(eq(paymentsTable.transaction_id, session.id)).execute();
+
+            const payment = await db.query.paymentsTable.findFirst({
+                where: eq(paymentsTable.transaction_id, session.id)});
+            if (payment) {
+                await db.update(bookingsTable).set({
+                    booking_status: 'Succeeded',
+                }).where(eq(bookingsTable.booking_id, payment.booking_id)).execute();
+            }
         }
         return event;
+
     } catch (err: any) {
         throw new Error(`Webhook Error: ${err.message}`);
+    }
+};
+
+//
+export const updateBookingAndPaymentStatus = async (transactionId: string) => {
+    try {
+        await db.transaction(async (trx) => {
+            const payment = await trx.select()
+                .from(paymentsTable)
+                .where(eq(paymentsTable.transaction_id, transactionId))
+                .limit(1)
+                .execute();
+
+            if (payment.length === 0) {
+                throw new Error('Payment not found');
+            }
+
+            const bookingId = payment[0].booking_id;
+
+            await trx.update(paymentsTable)
+                .set({ payment_status: 'Completed' })
+                .where(eq(paymentsTable.transaction_id, transactionId))
+                .execute();
+
+            await trx.update(bookingsTable)
+                .set({ booking_status: 'Completed' })
+                .where(eq(bookingsTable.booking_id, bookingId))
+                .execute();
+        });
+
+        return "Booking and payment status updated successfully";
+    } catch (err) {
+        throw err;
     }
 };

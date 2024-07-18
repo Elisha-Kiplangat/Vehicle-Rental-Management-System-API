@@ -439,7 +439,7 @@ POST http://localhost:8000/create-checkout-session
 Content-Type: application/json
 
 {
-  "amount": 1500000.00,
+  "amount": 2200000.00,
   "currency": "kes",
   "booking_id": 6
 }
