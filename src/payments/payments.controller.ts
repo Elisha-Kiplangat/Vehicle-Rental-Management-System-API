@@ -136,7 +136,7 @@ export const createCheckoutSessionHandler = async (c: Context) => {
 export const webhookHandler = async (c: Context) => {
     const payload = await c.req.text();
     const sig = c.req.header('stripe-signature');
-    const webhookSecret = '';
+    const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET as string;
 
     if (!sig) {
         console.error('Error: Missing Stripe signature');
