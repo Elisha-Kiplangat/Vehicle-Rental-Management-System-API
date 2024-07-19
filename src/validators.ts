@@ -50,6 +50,7 @@ export const vehicleSchema = z.object({
 
 export const vehicleSpecsSchema = z.object({
     manufacturer: z.string(),
+    vehicle_type: z.string(),
     model: z.string(),
     year: z.number(),
     fuel_type: z.string(),

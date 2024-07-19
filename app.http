@@ -51,7 +51,7 @@ POST http://localhost:8000/login
 Content-Type: application/json
 
 {
-    "email": "elishakiplanga@gmail.com",
+    "email": "ezra4998@gmail.com",
     "password": "password"
 
 }
@@ -98,15 +98,15 @@ Content-Type: application/json
 {
     "rental_rate": 2,
     "availability": true,
-    "manufacturer": "Tesla",
-    "model": "model 5",
-    "year": 2020,
-    "fuel_type": "electric",
+    "manufacturer": "Honda",
+    "model": "BM 150",
+    "year": 2022,
+    "fuel_type": "petrol",
     "engine_capacity": "800hp",
-    "transmission": "2.6L",
-    "seating_capacity": 4,
-    "color": "white",
-    "features": "Self driving"
+    "transmission": "1.5L",
+    "seating_capacity": 2,
+    "color": "Black",
+    "features": "Starter"
 }
 ###
 
@@ -129,31 +129,32 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxl
 
 ###
 GET http://localhost:8000/vehicleSpecifications
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJ1c2VyX2lkIjoyMCwiZXhwIjoxNzIxMzk4NjcwfQ.iLX3r2N9SJ9NvvuX9NBj7C9wreHhwRQNMmaJk1TJHko
 
 ###
 GET http://localhost:8000/vehicleSpecifications?limit=1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJ1c2VyX2lkIjoyMCwiZXhwIjoxNzIxMzk4NjcwfQ.iLX3r2N9SJ9NvvuX9NBj7C9wreHhwRQNMmaJk1TJHko
 
 ###
-GET http://localhost:8000/vehicleSpecifications/1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
+GET http://localhost:8000/vehicleSpecifications/9
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJ1c2VyX2lkIjoyMCwiZXhwIjoxNzIxMzk4NjcwfQ.iLX3r2N9SJ9NvvuX9NBj7C9wreHhwRQNMmaJk1TJHko
 
 ###
 POST http://localhost:8000/vehicleSpecifications
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJ1c2VyX2lkIjoyMCwiZXhwIjoxNzIxMzk4NjcwfQ.iLX3r2N9SJ9NvvuX9NBj7C9wreHhwRQNMmaJk1TJHko
 Content-Type: application/json
 
 {
-    "manufacturer": "Tesla",
-    "model": "Cybertruck",
+    "manufacturer": "Honda",
+    "vehicle_type": "Bike",
+    "model": "Honda c3",
     "year": 2023,
-    "fuel_type": "null",
-    "engine_capacity": "1000cc",
-    "transmission": "1000hp",
-    "seating_capacity": 4,
+    "fuel_type": "petrol",
+    "engine_capacity": "1.5L",
+    "transmission": "800hp",
+    "seating_capacity": 2,
     "color": "black",
-    "features": "beast"
+    "features": "Turbo"
 }
 
 ###

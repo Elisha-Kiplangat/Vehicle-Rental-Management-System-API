@@ -33,6 +33,7 @@ export const vehiclesTable = pgTable("vehicles", {
 
 export const vehicleSpecsTable = pgTable("vehicle_specifications", {
     vehicle_specification_id: serial("vehicle_specification_id").primaryKey(),
+    vehicle_type: varchar("vehicle_type", { length: 255 }).notNull(),
     manufacturer: varchar("manufacturer", { length: 255 }).notNull(),
     model: varchar("model", { length: 255 }).notNull(),
     year: integer("year").notNull(),
@@ -243,6 +244,7 @@ interface TuserBooking {
 export type UserWithBooking = TuserBooking[];
 
 interface specifications {
+    vehicle_type: string;
     model: string;
     fuel_type: string;
     seating_capacity: number;
