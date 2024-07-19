@@ -61,6 +61,7 @@ export const vehicleDetailsService = async (): Promise<vehicleDetails> => {
         with: {
             vehicle_spec: {
                 columns: {
+                    vehicle_type:true,
                     model: true,
                     fuel_type: true,
                     seating_capacity: true
@@ -81,6 +82,7 @@ interface Tvehicle {
 }
 
 interface TvehicleSpecs {
+    vehicle_type: string;
     manufacturer: string;
     model: string;
     year: number;

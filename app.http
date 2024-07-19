@@ -78,7 +78,7 @@ GET http://localhost:8000/vehicles/1
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
 
 ###
-POST http://localhost:8000/vehicles
+POST http://localhost:8000/add/vehicles
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
 Content-Type: application/json
 

@@ -97,6 +97,7 @@ export const vehicleDetailsController = async (c: Context) => {
 
 
 interface VehicleSpecs {
+    vehicle_type: string;
     manufacturer: string;
     model: string;
     year: number;
@@ -115,9 +116,10 @@ interface VehicleSpecs {
 
 export const addVehicleWithDetailsController = async (c: Context) => {
     try {
-        const { manufacturer, model, year, fuel_type, engine_capacity, transmission, seating_capacity, color, features, created_at, updated_at, vehicle_specification_id, rental_rate, availability }: VehicleSpecs = await c.req.json();
+        const { vehicle_type, manufacturer, model, year, fuel_type, engine_capacity, transmission, seating_capacity, color, features, created_at, updated_at, vehicle_specification_id, rental_rate, availability }: VehicleSpecs = await c.req.json();
 
         const vehicleSpecsData = {
+            vehicle_type,
             manufacturer,
             model,
             year,
