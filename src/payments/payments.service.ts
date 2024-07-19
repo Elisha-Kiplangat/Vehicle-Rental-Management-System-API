@@ -126,8 +126,8 @@ export const createCheckoutSession = async (amount: number, currency: string, bo
             },
         ],
         mode: 'payment',
-        success_url: `http://localhost:5173/dashboard/user/bookings`,
-        cancel_url: `http://localhost:8000/cancel`,
+        success_url: process.env.SUCCESS_URL as string,
+        cancel_url: process.env.CANCEL_URL as string,
     });
 
     await db.insert(paymentsTable).values({
