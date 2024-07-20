@@ -1,8 +1,9 @@
 import { Hono } from "hono";
-import { getAllVehiclesController, oneVehicleController, addVehicleController, updateVehicleController, deleteVehicleController, vehicleDetailsController, addVehicleWithDetailsController } from "./vehicle.controller";
+import { getAllVehiclesController, oneVehicleController, addVehicleController, updateVehicleController, deleteVehicleController, vehicleDetailsController, addVehicleWithDetailsController, getTotalVehiclesController } from "./vehicle.controller";
 import { zValidator } from "@hono/zod-validator";
 import { vehicleSchema } from "../validators";
 import { adminRoleAuth, allRoleAuth } from "../middleware/bearAuth";
+
 
 export const vehiclesRouter = new Hono();
 
@@ -24,4 +25,4 @@ vehiclesRouter.delete("/vehicles/delete/:id", adminRoleAuth, deleteVehicleContro
 
 vehiclesRouter.get('/vehicleDetails', allRoleAuth, vehicleDetailsController)
 
-
+vehiclesRouter.get('/vehicle/totals', adminRoleAuth, getTotalVehiclesController);

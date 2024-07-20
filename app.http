@@ -62,6 +62,9 @@ Content-Type: application/json
 GET http://localhost:8000/vehicles
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA3OTgwMzR9.qAb7ftQAEWP-c5fJp34jxhQyYcPhmi3Qavjp72mJo0k
 
+###
+GET http://localhost:8000/vehicle/totals
+
 
 ###--- vehicle details
 GET http://localhost:8000/vehicleDetails
@@ -392,12 +395,16 @@ DELETE http://localhost:8000/branches/delete/1
 
 ###
 GET http://localhost:8000/fleets
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJ1c2VyX2lkIjoyMCwiZXhwIjoxNzIxNDAyNzExfQ.eYl4-eCXnoBKMcjLlUrVRrvE_nuWLaVqvNUDBRFOxAw
+
 
 ###
 GET http://localhost:8000/fleets?limit=1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJ1c2VyX2lkIjoyMCwiZXhwIjoxNzIxNDAyNzExfQ.eYl4-eCXnoBKMcjLlUrVRrvE_nuWLaVqvNUDBRFOxAw
 
 ###
-GET http://localhost:8000/fleets/1
+GET http://localhost:8000/fleets/2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJ1c2VyX2lkIjoyMCwiZXhwIjoxNzIxNDAyNzExfQ.eYl4-eCXnoBKMcjLlUrVRrvE_nuWLaVqvNUDBRFOxAw
 
 ###
 POST http://localhost:8000/fleets

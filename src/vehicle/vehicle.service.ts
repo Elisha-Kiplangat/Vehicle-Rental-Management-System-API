@@ -1,6 +1,6 @@
 import { vehicleDetails, vehicleInsert, vehicleSelect, vehiclesTable, vehicleSpecsSelect, vehicleSpecsTable } from "../drizzle/schema";
 import db from "../drizzle/db";
-import { eq } from 'drizzle-orm'
+import { eq, count } from 'drizzle-orm'
 
 
 export const getAllVehicleService = async (limit?: number): Promise<vehicleSelect[]> => {
@@ -104,4 +104,10 @@ export const addVehicleWithDetailsService = async (vehicle: Tvehicle,vehicleSpec
     await db.insert(vehiclesTable).values(vehicle)
 
     return "Vehicle with specifications added successfully";
+};
+
+export const getTotalVehicles = async () => {
+    const result =
+        await db.select({ count: count() }).from(vehiclesTable);
+    return result;
 };

@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import { getAllVehicleService, oneVehicleService, addVehicleService, updateVehicleService, deleteVehicleService, vehicleDetailsService, addVehicleWithDetailsService } from "./vehicle.service";
+import { getAllVehicleService, oneVehicleService, addVehicleService, updateVehicleService, deleteVehicleService, vehicleDetailsService, addVehicleWithDetailsService, getTotalVehicles } from "./vehicle.service";
 
 export const getAllVehiclesController = async (c: Context) => {
     try {
@@ -144,5 +144,15 @@ export const addVehicleWithDetailsController = async (c: Context) => {
         return c.json({ message }, 200);
     } catch (error: any) {
         return c.json({ error: error.message }, 500);
+    }
+};
+
+export const getTotalVehiclesController = async (c: Context) => {
+    try {
+        const totalVehicles = await getTotalVehicles();
+        return c.json({ totalVehicles });
+    } catch (error) {
+        console.error('Failed to get total vehicles:', error);
+        return c.json({ error: 'Failed to get total vehicles' }, 500);
     }
 };
