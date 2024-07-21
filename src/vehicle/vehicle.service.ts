@@ -106,6 +106,31 @@ export const addVehicleWithDetailsService = async (vehicle: Tvehicle,vehicleSpec
     return "Vehicle with specifications added successfully";
 };
 
+export const updateVehicleDetailService = async (id: number, vehicle: Tvehicle, vehicleSpecs: TvehicleSpecs) => {
+    try {
+        
+        const vehicleSearched = await oneVehicleService(id);
+        if (!vehicleSearched) {
+            return false;
+        }
+
+        await db.update(vehiclesTable)
+            .set(vehicle)
+            .where(eq(vehiclesTable.vehicle_id, id));
+
+        await db.update(vehicleSpecsTable)
+            .set(vehicleSpecs)
+            .where(eq(vehicleSpecsTable.vehicle_specification_id, vehicle.vehicle_specification_id));
+
+        return "Vehicle and vehicle specs updated successfully";
+
+    } catch (err) {
+        throw err;
+    }
+}
+
+
+
 export const getTotalVehicles = async () => {
     const result =
         await db.select({ count: count() }).from(vehiclesTable);

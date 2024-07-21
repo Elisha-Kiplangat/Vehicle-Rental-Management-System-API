@@ -100,12 +100,12 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:8000/vehicles/details/add
+PUT http://localhost:8000/vehicles/details/1
 Content-Type: application/json
 
 {
     "rental_rate": 2,
-    "availability": true,
+    "availability": false,
     "manufacturer": "Honda",
     "model": "BM 150",
     "year": 2022,
@@ -116,9 +116,8 @@ Content-Type: application/json
     "color": "Black",
     "features": "Starter"
 }
+
 ###
-
-
 
 PUT http://localhost:8000/vehicles/3
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og

@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import { getAllVehicleService, oneVehicleService, addVehicleService, updateVehicleService, deleteVehicleService, vehicleDetailsService, addVehicleWithDetailsService, getTotalVehicles } from "./vehicle.service";
+import { getAllVehicleService, oneVehicleService, addVehicleService, updateVehicleService, deleteVehicleService, vehicleDetailsService, addVehicleWithDetailsService, getTotalVehicles, updateVehicleDetailService } from "./vehicle.service";
 
 export const getAllVehiclesController = async (c: Context) => {
     try {
@@ -144,6 +144,66 @@ export const addVehicleWithDetailsController = async (c: Context) => {
         return c.json({ message }, 200);
     } catch (error: any) {
         return c.json({ error: error.message }, 500);
+    }
+};
+
+export const updateVehicleDetailsController = async (c: Context) => {
+    const id = parseInt(c.req.param("id"));
+    if (isNaN(id)) return c.text("Invalid ID", 400);
+
+    let requestBody;
+    try {
+        requestBody = await c.req.json();
+        console.log("Received request body:", requestBody);
+    } catch (error) {
+        console.error("Error parsing request body:", error);
+        return c.text("Invalid request body", 400);
+    }
+
+    // Destructure properties from request body
+    const {
+        rental_rate,
+        availability,
+        vehicle_specification_id,
+        vehicle_type,
+        manufacturer,
+        model,
+        year,
+        fuel_type,
+        engine_capacity,
+        transmission,
+        seating_capacity,
+        color,
+        features
+    } = requestBody;
+
+    const vehicle = {
+        rental_rate,
+        availability,
+        vehicle_specification_id
+    };
+
+    const vehicleSpecs = {
+        vehicle_type,
+        manufacturer,
+        model,
+        year,
+        fuel_type,
+        engine_capacity,
+        transmission,
+        seating_capacity,
+        color,
+        features
+    };
+
+    try {
+        const res = await updateVehicleDetailService(id, vehicle, vehicleSpecs);
+        if (!res) return c.text("Vehicle not updated", 404);
+
+        return c.json({ msg: res }, 200);
+    } catch (err) {
+        console.error("Error updating vehicle details:", err);
+        return c.json({ error: 'Internal Server Error' }, 500);
     }
 };
 
