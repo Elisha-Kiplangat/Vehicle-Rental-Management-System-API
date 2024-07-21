@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import { getAllUserService, oneUserService, addUserService, updateUserService, deleteUserService, userWithBookingService, userSupportService } from "./users.service";
+import { getAllUserService, oneUserService, addUserService, updateUserService, deleteUserService, userWithBookingService, userSupportService, getTotalCustomers } from "./users.service";
 import { verifyToken } from "../middleware/bearAuth";
 import 'dotenv/config';
 
@@ -128,3 +128,13 @@ export const userSupportController = async (c: Context) => {
     }
     return c.json(user, 200);
 }
+
+export const getTotalCustomersController = async (c: Context) => {
+    try {
+        const totalCustomers = await getTotalCustomers();
+        return c.json({ totalCustomers });
+    } catch (error) {
+        console.error('Failed to get total customers:', error);
+        return c.json({ error: 'Failed to get total customers' }, 500);
+    }
+};

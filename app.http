@@ -11,6 +11,11 @@ Authorization:
 ###
 GET http://localhost:8000/users/20
 Authorization: 
+
+
+###
+GET http://localhost:8000/total/users
+
 ###
 GET http://localhost:8000/user-booking/20
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA3OTgwMzR9.qAb7ftQAEWP-c5fJp34jxhQyYcPhmi3Qavjp72mJo0k
@@ -181,6 +186,12 @@ GET http://localhost:8000/bookings
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDEwODYzOH0.WD7SDzaQ8FNACyfNP9HsXJOspCiquhEDzEJi8O4hVng
 
 ###
+GET http://localhost:8000/total/bookings
+
+###
+GET http://localhost:8000/total/active/bookings
+
+###
 GET http://localhost:8000/bookings?limit=1
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
 
@@ -279,6 +290,9 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxl
 ###
 GET http://localhost:8000/supportTickets
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
+
+###
+GET http://localhost:8000/total/supportTickets
 
 ###
 GET http://localhost:8000/supportTickets?limit=1

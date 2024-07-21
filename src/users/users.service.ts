@@ -1,6 +1,6 @@
 import { authenticationTable, TUserSupport, userInsert, userSelect, usersTable, UserWithBooking } from "../drizzle/schema";
 import db from "../drizzle/db";
-import { eq } from 'drizzle-orm'
+import { count, eq } from 'drizzle-orm'
 
 
 export const getAllUserService = async (limit?: number): Promise<userSelect[]> => {
@@ -100,3 +100,11 @@ export const userSupportService = async (id: number): Promise<TUserSupport | nul
         where: eq(usersTable.user_id, id)
     })
 }
+
+
+export const getTotalCustomers = async () => {
+    const result =
+        await db.select({ count: count() }).from(usersTable);
+    return result[0]?.count || 0;
+};
+

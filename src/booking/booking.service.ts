@@ -1,6 +1,6 @@
 import { bookingsInsert, bookingsSelect, bookingsTable } from "../drizzle/schema";
 import db from "../drizzle/db";
-import { eq } from 'drizzle-orm'
+import { eq, count, gt } from 'drizzle-orm'
 
 
 export const getAllBookingService = async (limit?: number): Promise<bookingsSelect[]> => {
@@ -51,3 +51,17 @@ export const deleteBookingService = async (id: number) => {
     await db.delete(bookingsTable).where(eq(bookingsTable.booking_id, id));
     return "booking deleted successfully"
 }
+
+export const getTotalBooking = async () => {
+    const result =
+        await db.select({ count: count() }).from(bookingsTable);
+    return result[0]?.count || 0;
+};
+
+export const getTotalActiveBookings = async () => {
+    const result =
+        await db.select({ count: count() })
+            .from(bookingsTable)
+            .where(gt(bookingsTable.return_date, new Date().toISOString()));
+    return result[0]?.count || 0;
+};

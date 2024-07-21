@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import { getAllSupportTicketService, oneSupportTicketService, addSupportTicketService, updateSupportTicketService, deleteSupportTicketService } from "./customerSupportTicket.service";
+import { getAllSupportTicketService, oneSupportTicketService, addSupportTicketService, updateSupportTicketService, deleteSupportTicketService, getTotalUnreadMessages } from "./customerSupportTicket.service";
 
 export const getAllSupportTicketsController = async (c: Context) => {
     try {
@@ -78,3 +78,14 @@ export const deleteSupportTicketController = async (c: Context) => {
         return c.json({ error: error?.message }, 400)
     }
 }
+
+
+export const getTotalUnreadMessagesController = async (c: Context) => {
+    try {
+        const totalMessages = await getTotalUnreadMessages();
+        return c.json({ totalMessages });
+    } catch (error) {
+        console.error('Failed to get total unread messages:', error);
+        return c.json({ error: 'Failed to get total unread messages' }, 500);
+    }
+};

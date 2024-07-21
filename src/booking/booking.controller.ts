@@ -1,5 +1,5 @@
 import { Context } from "hono";
-import { getAllBookingService, oneBookingService, addBookingService, updateBookingService, deleteBookingService } from "./booking.service";
+import { getAllBookingService, oneBookingService, addBookingService, updateBookingService, deleteBookingService, getTotalBooking, getTotalActiveBookings } from "./booking.service";
 
 export const getAllBookingsController = async (c: Context) => {
     try {
@@ -76,3 +76,22 @@ export const deleteBookingController = async (c: Context) => {
         return c.json({ error: error?.message }, 400)
     }
 }
+
+export const getTotalBookingsController = async (c: Context) => {
+    try {
+        const totalBooking = await getTotalBooking();
+        return c.json({ totalBooking });
+    } catch (error) {
+        console.error('Failed to get total bookings:', error);
+        return c.json({ error: 'Failed to get total bookings' }, 500);
+    }
+};
+
+export const getTotalActiveBookingsController = async (c: Context) => {
+    try {
+        const totalActiveBookings = await getTotalActiveBookings();
+        return c.json({ totalActiveBookings });
+    } catch (error: any) {
+        return c.json({ error: error.message }, 500);
+    }
+};

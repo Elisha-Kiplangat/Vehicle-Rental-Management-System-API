@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { getAllSupportTicketsController, oneSupportTicketController, addSupportTicketController, updateSupportTicketController, deleteSupportTicketController } from "./customerSupportTicket.controller";
+import { getAllSupportTicketsController, oneSupportTicketController, addSupportTicketController, updateSupportTicketController, deleteSupportTicketController, getTotalUnreadMessagesController } from "./customerSupportTicket.controller";
 import { zValidator } from "@hono/zod-validator";
 import { supportTicketSchema } from "../validators";
 import { adminRoleAuth, userRoleAuth, allRoleAuth } from "../middleware/bearAuth";
@@ -19,3 +19,6 @@ supportTicketsRouter.post("/supportTickets", userRoleAuth, zValidator('json', su
 supportTicketsRouter.put("/supportTickets/:id", allRoleAuth, updateSupportTicketController)
 
 supportTicketsRouter.delete("/supportTickets/delete/:id",allRoleAuth, deleteSupportTicketController)
+
+supportTicketsRouter.get("/total/supportTickets", adminRoleAuth, getTotalUnreadMessagesController);
+

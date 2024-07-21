@@ -1,6 +1,6 @@
 import { costomerSupportInsert, custommerSupportSelect, customerSupportTicketsTable } from "../drizzle/schema";
 import db from "../drizzle/db";
-import { eq } from 'drizzle-orm'
+import { count, eq } from 'drizzle-orm'
 
 
 export const getAllSupportTicketService = async (limit?: number): Promise<custommerSupportSelect[]> => {
@@ -48,3 +48,9 @@ export const deleteSupportTicketService = async (id: number) => {
     await db.delete(customerSupportTicketsTable).where(eq(customerSupportTicketsTable.ticket_id, id));
     return "support Ticket deleted successfully"
 }
+
+export const getTotalUnreadMessages = async () => {
+    const result =
+        await db.select({ count: count() }).from(customerSupportTicketsTable).where(eq(customerSupportTicketsTable.status,'pending'));
+    return result[0]?.count || 0;
+};

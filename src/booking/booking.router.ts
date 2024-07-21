@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { getAllBookingsController, oneBookingController, addBookingController, updateBookingController, deleteBookingController } from "./booking.controller";
+import { getAllBookingsController, oneBookingController, addBookingController, updateBookingController, deleteBookingController, getTotalBookingsController, getTotalActiveBookingsController } from "./booking.controller";
 import { zValidator } from "@hono/zod-validator";
 import { bookingSchema } from "../validators";
 import { adminRoleAuth, userRoleAuth, allRoleAuth } from "../middleware/bearAuth";
@@ -19,3 +19,8 @@ bookingsRouter.post("/bookings", allRoleAuth, zValidator('json', bookingSchema, 
 bookingsRouter.put("/bookings/:id", allRoleAuth, updateBookingController)
 
 bookingsRouter.delete("/bookings/delete/:id", allRoleAuth, deleteBookingController)
+
+bookingsRouter.get("/total/bookings", adminRoleAuth, getTotalBookingsController)
+
+bookingsRouter.get("/total/active/bookings", adminRoleAuth, getTotalActiveBookingsController)
+
