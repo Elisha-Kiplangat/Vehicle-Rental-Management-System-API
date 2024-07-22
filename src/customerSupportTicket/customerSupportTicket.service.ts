@@ -18,8 +18,8 @@ export const getAllSupportTicketService = async (limit?: number): Promise<custom
     }
 }
 
-export const oneSupportTicketService = async (id: number): Promise<custommerSupportSelect | undefined> => {
-    return await db.query.customerSupportTicketsTable.findFirst({
+export const oneSupportTicketService = async (id: number): Promise<custommerSupportSelect[]> => {
+    return await db.query.customerSupportTicketsTable.findMany({
         where: eq(customerSupportTicketsTable.user_id, id)
     });
 }
