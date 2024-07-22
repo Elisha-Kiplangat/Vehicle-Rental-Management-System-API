@@ -160,7 +160,6 @@ export const updateVehicleDetailsController = async (c: Context) => {
         return c.text("Invalid request body", 400);
     }
 
-    // Destructure properties from request body
     const {
         rental_rate,
         availability,

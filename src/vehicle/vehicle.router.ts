@@ -21,7 +21,7 @@ vehiclesRouter.post("/add/vehicles", adminRoleAuth, addVehicleWithDetailsControl
 
 vehiclesRouter.put("/vehicles/:id", adminRoleAuth, updateVehicleController)
 
-vehiclesRouter.delete("/vehicles/delete/:id", adminRoleAuth, deleteVehicleController)
+vehiclesRouter.delete("/vehicle/delete/:id", deleteVehicleController)
 
 vehiclesRouter.get('/vehicleDetails', allRoleAuth, vehicleDetailsController)
 

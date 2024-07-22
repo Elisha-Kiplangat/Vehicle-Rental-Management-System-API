@@ -64,6 +64,7 @@ Content-Type: application/json
 ###     ---------------------------------
 
 ###
+
 GET http://localhost:8000/vehicles
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA3OTgwMzR9.qAb7ftQAEWP-c5fJp34jxhQyYcPhmi3Qavjp72mJo0k
 
@@ -128,10 +129,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:8000/vehicles/delete/4
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
-
-
+DELETE http://localhost:8000/vehicle/delete/5
 ###     ---------------------------------
 
 ###
@@ -298,8 +296,8 @@ GET http://localhost:8000/supportTickets?limit=1
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
 
 ###
-GET http://localhost:8000/supportTickets/1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBleGFtcGxlLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcyMDA5MzQ5Mn0.bfh9sCV4wXdwPd8P1TjJH7-QecpEIdSTPD-SMokQ3Og
+GET http://localhost:8000/supportTickets/23
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlenJhNDk5OEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJ1c2VyX2lkIjoyMCwiZXhwIjoxNzIxNjQzMjUzfQ.0pzaYuCIgbI3z2aUovpHXji0OL0OHGCKIaNUO-KZ5AM
 
 ###
 POST http://localhost:8000/supportTickets
