@@ -44,30 +44,29 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Welcome to Our Service!</h1>
+            <h1>Welcome to Rentvy Service!</h1>
         </div>
         <div class="content">
-            <h2>Hello, <%= user.firstName %></h2>
+            <h2>Hello, <%= user.full_name %></h2>
             <p>Thank you for registering with us. We are excited to have you on board.</p>
             <p>Your account has been successfully created. Here are your details:</p>
             <ul>
-                <% if (user.firstName) { %>
+                <% if (user.full_name) { %>
                     <li><strong>Name:</strong>
-                        <%= user.firstName %>
+                        <%= user.full_name %>
                     </li>
                     <% } %>
                 <li><strong>Email:</strong>
                     <%= user.email %>
                 </li>
-                <!-- Add more details if necessary -->
             </ul>
             <p>To get started, please visit our website and log in to your account.</p>
             <p>If you have any questions or need assistance, feel free to reply to this email or contact our support
                 team.</p>
-            <p>Best regards,<br>The Grill Restaurant Team</p>
+            <p>Best regards,<br>The Rentvy Team</p>
         </div>
         <div class="footer">
-            <p>&copy; 2024 Grill. All rights reserved.</p>
+            <p>&copy; 2024 Rentvy. All rights reserved.</p>
             <p><a href="[unsubscribe_link]">Unsubscribe</a> | <a href="[privacy_policy_link]">Privacy Policy</a></p>
         </div>
     </div>
