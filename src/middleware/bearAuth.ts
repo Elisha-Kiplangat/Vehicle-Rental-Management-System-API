@@ -6,7 +6,7 @@ import { Context, Next } from "hono";
 
 export const verifyToken = async (token: string, secret: string) => {
     try {
-        const decoded = await verify(token as string, secret)
+        const decoded = await verify(token as string, secret, 'HS256' );
         return decoded;
     } catch (error: any) {
         return null
